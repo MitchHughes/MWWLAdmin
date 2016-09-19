@@ -1,0 +1,43 @@
+﻿
+namespace MWWLAdmin.MwwlDB {
+    export interface PaintingsRow {
+        Id?: string;
+        Title?: string;
+        CategoryId?: number;
+        OriginalFileName?: string;
+        Dimension?: string;
+        Workshop?: boolean;
+        Large?: boolean;
+        Small?: boolean;
+        OriginalAvailable?: boolean;
+        OriginalPrice?: number;
+        Framed?: boolean;
+        CategoryName?: string;
+        CategoryFolderName?: string;
+    }
+
+    export namespace PaintingsRow {
+        export const idProperty = 'Id';
+        export const nameProperty = 'Title';
+        export const localTextPrefix = 'MwwlDB.Paintings';
+
+        export namespace Fields {
+            export declare const Id;
+            export declare const Title;
+            export declare const CategoryId;
+            export declare const OriginalFileName;
+            export declare const Dimension;
+            export declare const Workshop;
+            export declare const Large;
+            export declare const Small;
+            export declare const OriginalAvailable;
+            export declare const OriginalPrice;
+            export declare const Framed;
+            export declare const CategoryName: string;
+            export declare const CategoryFolderName: string;
+        }
+
+        ['Id', 'Title', 'CategoryId', 'OriginalFileName', 'Dimension', 'Workshop', 'Large', 'Small', 'OriginalAvailable', 'OriginalPrice', 'Framed', 'CategoryName', 'CategoryFolderName'].forEach(x => (<any>Fields)[x] = x);
+    }
+}
+

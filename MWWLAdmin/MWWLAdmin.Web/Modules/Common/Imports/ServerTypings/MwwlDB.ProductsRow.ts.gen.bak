@@ -1,0 +1,27 @@
+﻿
+namespace MWWLAdmin.MwwlDB {
+    export interface ProductsRow {
+        Id?: number;
+        Title?: string;
+        Description?: string;
+        Available?: boolean;
+        Sequence?: number;
+    }
+
+    export namespace ProductsRow {
+        export const idProperty = 'Id';
+        export const nameProperty = 'Title';
+        export const localTextPrefix = 'MwwlDB.Products';
+
+        export namespace Fields {
+            export declare const Id;
+            export declare const Title;
+            export declare const Description;
+            export declare const Available;
+            export declare const Sequence;
+        }
+
+        ['Id', 'Title', 'Description', 'Available', 'Sequence'].forEach(x => (<any>Fields)[x] = x);
+    }
+}
+

@@ -1,0 +1,23 @@
+﻿
+namespace MWWLAdmin.MwwlDB {
+    export interface CategoriesRow {
+        Id?: number;
+        Name?: string;
+        FolderName?: string;
+    }
+
+    export namespace CategoriesRow {
+        export const idProperty = 'Id';
+        export const nameProperty = 'Name';
+        export const localTextPrefix = 'MwwlDB.Categories';
+
+        export namespace Fields {
+            export declare const Id;
+            export declare const Name;
+            export declare const FolderName;
+        }
+
+        ['Id', 'Name', 'FolderName'].forEach(x => (<any>Fields)[x] = x);
+    }
+}
+

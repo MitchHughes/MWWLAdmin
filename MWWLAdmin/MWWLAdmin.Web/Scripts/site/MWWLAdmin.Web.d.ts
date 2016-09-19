@@ -1,4 +1,217 @@
-﻿declare namespace MWWLAdmin.Membership {
+﻿declare namespace MWWLAdmin.MwwlDB {
+    class TextsDialog extends Serenity.EntityDialog<TextsRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: TextsForm;
+    }
+}
+declare namespace MWWLAdmin.Common {
+    class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
+        protected getIdProperty(): string;
+        private nextId;
+        constructor(container: JQuery);
+        protected id(entity: TEntity): any;
+        protected save(opt: Serenity.ServiceOptions<any>, callback: (r: Serenity.ServiceResponse) => void): void;
+        protected deleteEntity(id: number): boolean;
+        protected validateEntity(row: TEntity, id: number): boolean;
+        protected setEntities(items: TEntity[]): void;
+        protected getNewEntity(): TEntity;
+        protected getButtons(): Serenity.ToolButton[];
+        protected editItem(entityOrId: any): void;
+        getEditValue(property: any, target: any): void;
+        setEditValue(source: any, property: any): void;
+        value: TEntity[];
+        protected getGridCanLoad(): boolean;
+        protected usePager(): boolean;
+        protected getInitialTitle(): any;
+        protected createQuickSearchInput(): void;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class TextsEditor extends Common.GridEditorBase<TextsRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof TextsEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace MWWLAdmin.Common {
+    class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
+        protected getIdProperty(): string;
+        onSave: (options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void) => void;
+        onDelete: (options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void) => void;
+        destroy(): void;
+        protected updateInterface(): void;
+        protected saveHandler(options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void): void;
+        protected deleteHandler(options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void): void;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class TextsEditorDialog extends Common.GridEditorDialog<TextsRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: TextsForm;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class TextsGrid extends Serenity.EntityGrid<TextsRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof TextsDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class ProductsDialog extends Serenity.EntityDialog<ProductsRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: ProductsForm;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class ProductsEditor extends Common.GridEditorBase<ProductsRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof ProductsEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class ProductsEditorDialog extends Common.GridEditorDialog<ProductsRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: ProductsForm;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class ProductsGrid extends Serenity.EntityGrid<ProductsRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof ProductsDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class PricesDialog extends Serenity.EntityDialog<PricesRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: PricesForm;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class PricesEditor extends Common.GridEditorBase<PricesRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof PricesEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class PricesEditorDialog extends Common.GridEditorDialog<PricesRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: PricesForm;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class PricesGrid extends Serenity.EntityGrid<PricesRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof PricesDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class PaintingsDialog extends Serenity.EntityDialog<PaintingsRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: PaintingsForm;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class PaintingsEditor extends Common.GridEditorBase<PaintingsRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof PaintingsEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class PaintingsEditorDialog extends Common.GridEditorDialog<PaintingsRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: PaintingsForm;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class PaintingsGrid extends Serenity.EntityGrid<PaintingsRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof PaintingsDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class CategoriesDialog extends Serenity.EntityDialog<CategoriesRow, any> {
+        protected getFormKey(): string;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected getService(): string;
+        protected form: CategoriesForm;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class CategoriesEditor extends Common.GridEditorBase<CategoriesRow> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof CategoriesEditorDialog;
+        protected getLocalTextPrefix(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class CategoriesEditorDialog extends Common.GridEditorDialog<CategoriesRow> {
+        protected getFormKey(): string;
+        protected getLocalTextPrefix(): string;
+        protected getNameProperty(): string;
+        protected form: CategoriesForm;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class CategoriesGrid extends Serenity.EntityGrid<CategoriesRow, any> {
+        protected getColumnsKey(): string;
+        protected getDialogType(): typeof CategoriesDialog;
+        protected getIdProperty(): string;
+        protected getLocalTextPrefix(): string;
+        protected getService(): string;
+        constructor(container: JQuery);
+    }
+}
+declare namespace MWWLAdmin.Membership {
     class LoginPanel extends Serenity.PropertyPanel<LoginRequest, any> {
         protected getFormKey(): string;
         private form;
@@ -594,6 +807,282 @@ declare namespace MWWLAdmin.Membership {
         Password?: string;
     }
 }
+declare namespace MWWLAdmin.MwwlDB {
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class CategoriesForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface CategoriesForm {
+        Name: Serenity.StringEditor;
+        FolderName: Serenity.StringEditor;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    interface CategoriesRow {
+        Id?: number;
+        Name?: string;
+        FolderName?: string;
+    }
+    namespace CategoriesRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const Id: string;
+            const Name: string;
+            const FolderName: string;
+        }
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    namespace CategoriesService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<CategoriesRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<CategoriesRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<CategoriesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<CategoriesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class PaintingsForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface PaintingsForm {
+        Title: Serenity.StringEditor;
+        CategoryId: Serenity.IntegerEditor;
+        OriginalFileName: Serenity.StringEditor;
+        Dimension: Serenity.StringEditor;
+        Workshop: Serenity.BooleanEditor;
+        Large: Serenity.BooleanEditor;
+        Small: Serenity.BooleanEditor;
+        OriginalAvailable: Serenity.BooleanEditor;
+        OriginalPrice: Serenity.DecimalEditor;
+        Framed: Serenity.BooleanEditor;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    interface PaintingsRow {
+        Id?: string;
+        Title?: string;
+        CategoryId?: number;
+        OriginalFileName?: string;
+        Dimension?: string;
+        Workshop?: boolean;
+        Large?: boolean;
+        Small?: boolean;
+        OriginalAvailable?: boolean;
+        OriginalPrice?: number;
+        Framed?: boolean;
+        CategoryName?: string;
+        CategoryFolderName?: string;
+    }
+    namespace PaintingsRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const Id: string;
+            const Title: string;
+            const CategoryId: string;
+            const OriginalFileName: string;
+            const Dimension: string;
+            const Workshop: string;
+            const Large: string;
+            const Small: string;
+            const OriginalAvailable: string;
+            const OriginalPrice: string;
+            const Framed: string;
+            const CategoryName: string;
+            const CategoryFolderName: string;
+        }
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    namespace PaintingsService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<PaintingsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<PaintingsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<PaintingsRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<PaintingsRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class PricesForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface PricesForm {
+        Item: Serenity.StringEditor;
+        Description: Serenity.StringEditor;
+        Price: Serenity.DecimalEditor;
+        Active: Serenity.BooleanEditor;
+        ProductId: Serenity.IntegerEditor;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    interface PricesRow {
+        Id?: number;
+        Item?: string;
+        Description?: string;
+        Price?: number;
+        Active?: boolean;
+        ProductId?: number;
+        ProductTitle?: string;
+        ProductDescription?: string;
+        ProductAvailable?: boolean;
+        ProductSequence?: number;
+    }
+    namespace PricesRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const Id: string;
+            const Item: string;
+            const Description: string;
+            const Price: string;
+            const Active: string;
+            const ProductId: string;
+            const ProductTitle: string;
+            const ProductDescription: string;
+            const ProductAvailable: string;
+            const ProductSequence: string;
+        }
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    namespace PricesService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<PricesRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<PricesRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<PricesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<PricesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class ProductsForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface ProductsForm {
+        Title: Serenity.StringEditor;
+        Description: Serenity.StringEditor;
+        Available: Serenity.BooleanEditor;
+        Sequence: Serenity.IntegerEditor;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    interface ProductsRow {
+        Id?: number;
+        Title?: string;
+        Description?: string;
+        Available?: boolean;
+        Sequence?: number;
+    }
+    namespace ProductsRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const Id: string;
+            const Title: string;
+            const Description: string;
+            const Available: string;
+            const Sequence: string;
+        }
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    namespace ProductsService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<ProductsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<ProductsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<ProductsRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<ProductsRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+}
+declare namespace MWWLAdmin.MwwlDB {
+    class TextsForm extends Serenity.PrefixedContext {
+        static formKey: string;
+    }
+    interface TextsForm {
+        Text: Serenity.StringEditor;
+        Note: Serenity.StringEditor;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    interface TextsRow {
+        Id?: string;
+        Text?: string;
+        Note?: string;
+    }
+    namespace TextsRow {
+        const idProperty: string;
+        const nameProperty: string;
+        const localTextPrefix: string;
+        namespace Fields {
+            const Id: string;
+            const Text: string;
+            const Note: string;
+        }
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
+    namespace TextsService {
+        const baseUrl: string;
+        function Create(request: Serenity.SaveRequest<TextsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Update(request: Serenity.SaveRequest<TextsRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<TextsRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<TextsRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
+        namespace Methods {
+            const Create: string;
+            const Update: string;
+            const Delete: string;
+            const Retrieve: string;
+            const List: string;
+        }
+    }
+}
 declare namespace MWWLAdmin {
     interface ScriptUserDefinition {
         Username?: string;
@@ -668,39 +1157,6 @@ declare namespace MWWLAdmin.Common {
     }
     namespace ExcelExportHelper {
         function createToolButton(options: ExcelExportOptions): Serenity.ToolButton;
-    }
-}
-declare namespace MWWLAdmin.Common {
-    class GridEditorBase<TEntity> extends Serenity.EntityGrid<TEntity, any> implements Serenity.IGetEditValue, Serenity.ISetEditValue {
-        protected getIdProperty(): string;
-        private nextId;
-        constructor(container: JQuery);
-        protected id(entity: TEntity): any;
-        protected save(opt: Serenity.ServiceOptions<any>, callback: (r: Serenity.ServiceResponse) => void): void;
-        protected deleteEntity(id: number): boolean;
-        protected validateEntity(row: TEntity, id: number): boolean;
-        protected setEntities(items: TEntity[]): void;
-        protected getNewEntity(): TEntity;
-        protected getButtons(): Serenity.ToolButton[];
-        protected editItem(entityOrId: any): void;
-        getEditValue(property: any, target: any): void;
-        setEditValue(source: any, property: any): void;
-        value: TEntity[];
-        protected getGridCanLoad(): boolean;
-        protected usePager(): boolean;
-        protected getInitialTitle(): any;
-        protected createQuickSearchInput(): void;
-    }
-}
-declare namespace MWWLAdmin.Common {
-    class GridEditorDialog<TEntity> extends Serenity.EntityDialog<TEntity, any> {
-        protected getIdProperty(): string;
-        onSave: (options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void) => void;
-        onDelete: (options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void) => void;
-        destroy(): void;
-        protected updateInterface(): void;
-        protected saveHandler(options: Serenity.ServiceOptions<Serenity.SaveResponse>, callback: (response: Serenity.SaveResponse) => void): void;
-        protected deleteHandler(options: Serenity.ServiceOptions<Serenity.DeleteResponse>, callback: (response: Serenity.DeleteResponse) => void): void;
     }
 }
 declare namespace MWWLAdmin.LanguageList {

@@ -68,6 +68,35 @@ namespace MVC
                     public const string AccountSignUp = "~/Modules/Membership/Account/SignUp/AccountSignUp.cshtml";
                 }
             }
+
+        }
+
+        public static class MwwlDB
+        {
+            public static class Categories
+            {
+                public const string CategoriesIndex = "~/Modules/MwwlDB/Categories/CategoriesIndex.cshtml";
+            }
+
+            public static class Paintings
+            {
+                public const string PaintingsIndex = "~/Modules/MwwlDB/Paintings/PaintingsIndex.cshtml";
+            }
+
+            public static class Prices
+            {
+                public const string PricesIndex = "~/Modules/MwwlDB/Prices/PricesIndex.cshtml";
+            }
+
+            public static class Products
+            {
+                public const string ProductsIndex = "~/Modules/MwwlDB/Products/ProductsIndex.cshtml";
+            }
+
+            public static class Texts
+            {
+                public const string TextsIndex = "~/Modules/MwwlDB/Texts/TextsIndex.cshtml";
+            }
         }
 
         public static class Shared

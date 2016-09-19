@@ -1,0 +1,37 @@
+﻿
+namespace MWWLAdmin.MwwlDB {
+    export interface PricesRow {
+        Id?: number;
+        Item?: string;
+        Description?: string;
+        Price?: number;
+        Active?: boolean;
+        ProductId?: number;
+        ProductTitle?: string;
+        ProductDescription?: string;
+        ProductAvailable?: boolean;
+        ProductSequence?: number;
+    }
+
+    export namespace PricesRow {
+        export const idProperty = 'Id';
+        export const nameProperty = 'Item';
+        export const localTextPrefix = 'MwwlDB.Prices';
+
+        export namespace Fields {
+            export declare const Id;
+            export declare const Item;
+            export declare const Description;
+            export declare const Price;
+            export declare const Active;
+            export declare const ProductId;
+            export declare const ProductTitle: string;
+            export declare const ProductDescription: string;
+            export declare const ProductAvailable: string;
+            export declare const ProductSequence: string;
+        }
+
+        ['Id', 'Item', 'Description', 'Price', 'Active', 'ProductId', 'ProductTitle', 'ProductDescription', 'ProductAvailable', 'ProductSequence'].forEach(x => (<any>Fields)[x] = x);
+    }
+}
+

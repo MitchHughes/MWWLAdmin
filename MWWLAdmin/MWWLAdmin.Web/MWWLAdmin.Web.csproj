@@ -1167,6 +1167,21 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\GetNextNumberResponse.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.CategoriesColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.PaintingsColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.PricesColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.ProductsColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.TextsColumns.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Navigation\ThemeSelection.ts" />
     <TypeScriptCompile Include="Modules\Common\Navigation\SidebarSearch.ts" />
     <TypeScriptCompile Include="Modules\Common\Navigation\LanguageSelection.ts" />
@@ -1504,6 +1519,76 @@
     <TypeScriptCompile Include="Scripts\typings\slickgrid\slickgrid.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\sortablejs\sortablejs.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\toastr\toastr.d.ts" />
+    <Content Include="Modules\MwwlDB\Categories\CategoriesIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.CategoriesRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.CategoriesService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.CategoriesForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\MwwlDB\Categories\CategoriesGrid.ts" />
+    <TypeScriptCompile Include="Modules\MwwlDB\Categories\CategoriesDialog.ts" />
+    <TypeScriptCompile Include="Modules\MwwlDB\Categories\CategoriesEditor.ts" />
+    <TypeScriptCompile Include="Modules\MwwlDB\Categories\CategoriesEditorDialog.ts" />
+    <Content Include="Modules\MwwlDB\Paintings\PaintingsIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.PaintingsRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.PaintingsService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.PaintingsForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\MwwlDB\Paintings\PaintingsGrid.ts" />
+    <TypeScriptCompile Include="Modules\MwwlDB\Paintings\PaintingsDialog.ts" />
+    <TypeScriptCompile Include="Modules\MwwlDB\Paintings\PaintingsEditor.ts" />
+    <TypeScriptCompile Include="Modules\MwwlDB\Paintings\PaintingsEditorDialog.ts" />
+    <Content Include="Modules\MwwlDB\Prices\PricesIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.PricesRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.PricesService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.PricesForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\MwwlDB\Prices\PricesGrid.ts" />
+    <TypeScriptCompile Include="Modules\MwwlDB\Prices\PricesDialog.ts" />
+    <TypeScriptCompile Include="Modules\MwwlDB\Prices\PricesEditor.ts" />
+    <TypeScriptCompile Include="Modules\MwwlDB\Prices\PricesEditorDialog.ts" />
+    <Content Include="Modules\MwwlDB\Products\ProductsIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.ProductsRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.ProductsService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.ProductsForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\MwwlDB\Products\ProductsGrid.ts" />
+    <TypeScriptCompile Include="Modules\MwwlDB\Products\ProductsDialog.ts" />
+    <TypeScriptCompile Include="Modules\MwwlDB\Products\ProductsEditor.ts" />
+    <TypeScriptCompile Include="Modules\MwwlDB\Products\ProductsEditorDialog.ts" />
+    <Content Include="Modules\MwwlDB\Texts\TextsIndex.cshtml" />
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.TextsRow.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.TextsService.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.TextsForm.ts">
+      <DependentUpon>ServerTypings.tt</DependentUpon>
+    </TypeScriptCompile>
+    <TypeScriptCompile Include="Modules\MwwlDB\Texts\TextsGrid.ts" />
+    <TypeScriptCompile Include="Modules\MwwlDB\Texts\TextsDialog.ts" />
+    <TypeScriptCompile Include="Modules\MwwlDB\Texts\TextsEditor.ts" />
+    <TypeScriptCompile Include="Modules\MwwlDB\Texts\TextsEditorDialog.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1546,10 +1631,26 @@
     <Compile Include="Modules\Common\Imports\ClientTypes\Administration.RoleCheckEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\MwwlDB.CategoriesEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\MwwlDB.PaintingsEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\MwwlDB.PricesEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\MwwlDB.ProductsEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Modules\Common\Imports\ClientTypes\MwwlDB.TextsEditorAttribute.cs">
+      <DependentUpon>ClientTypes.tt</DependentUpon>
+    </Compile>
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20160515_072600_UserPreferences.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20160605_215300_Granted.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151217_000600_LastDirectoryUpdate.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151111_133500_UserPermissionGrant.cs" />
+    <Compile Include="Modules\Common\Migrations\DefaultDB\MwwlDB_20160919_112000_InitialCreation.cs" />
     <Compile Include="Modules\Common\Migrations\MigrationUtils.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141111_113000_Permissions.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141103_140000_Initial.cs" />
@@ -1630,6 +1731,36 @@
     <Compile Include="Modules\Administration\UserPermission\UserPermissionRow.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionRepository.cs" />
     <Compile Include="Modules\Administration\UserPermission\UserPermissionEndpoint.cs" />
+    <Compile Include="Modules\MwwlDB\Categories\CategoriesRow.cs" />
+    <Compile Include="Modules\MwwlDB\Categories\CategoriesColumns.cs" />
+    <Compile Include="Modules\MwwlDB\Categories\CategoriesForm.cs" />
+    <Compile Include="Modules\MwwlDB\Categories\CategoriesRepository.cs" />
+    <Compile Include="Modules\MwwlDB\Categories\CategoriesEndpoint.cs" />
+    <Compile Include="Modules\MwwlDB\Categories\CategoriesPage.cs" />
+    <Compile Include="Modules\MwwlDB\Paintings\PaintingsRow.cs" />
+    <Compile Include="Modules\MwwlDB\Paintings\PaintingsColumns.cs" />
+    <Compile Include="Modules\MwwlDB\Paintings\PaintingsForm.cs" />
+    <Compile Include="Modules\MwwlDB\Paintings\PaintingsRepository.cs" />
+    <Compile Include="Modules\MwwlDB\Paintings\PaintingsEndpoint.cs" />
+    <Compile Include="Modules\MwwlDB\Paintings\PaintingsPage.cs" />
+    <Compile Include="Modules\MwwlDB\Prices\PricesRow.cs" />
+    <Compile Include="Modules\MwwlDB\Prices\PricesColumns.cs" />
+    <Compile Include="Modules\MwwlDB\Prices\PricesForm.cs" />
+    <Compile Include="Modules\MwwlDB\Prices\PricesRepository.cs" />
+    <Compile Include="Modules\MwwlDB\Prices\PricesEndpoint.cs" />
+    <Compile Include="Modules\MwwlDB\Prices\PricesPage.cs" />
+    <Compile Include="Modules\MwwlDB\Products\ProductsRow.cs" />
+    <Compile Include="Modules\MwwlDB\Products\ProductsColumns.cs" />
+    <Compile Include="Modules\MwwlDB\Products\ProductsForm.cs" />
+    <Compile Include="Modules\MwwlDB\Products\ProductsRepository.cs" />
+    <Compile Include="Modules\MwwlDB\Products\ProductsEndpoint.cs" />
+    <Compile Include="Modules\MwwlDB\Products\ProductsPage.cs" />
+    <Compile Include="Modules\MwwlDB\Texts\TextsRow.cs" />
+    <Compile Include="Modules\MwwlDB\Texts\TextsColumns.cs" />
+    <Compile Include="Modules\MwwlDB\Texts\TextsForm.cs" />
+    <Compile Include="Modules\MwwlDB\Texts\TextsRepository.cs" />
+    <Compile Include="Modules\MwwlDB\Texts\TextsEndpoint.cs" />
+    <Compile Include="Modules\MwwlDB\Texts\TextsPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -11,6 +11,618 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 var MWWLAdmin;
 (function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var TextsDialog = (function (_super) {
+            __extends(TextsDialog, _super);
+            function TextsDialog() {
+                _super.apply(this, arguments);
+                this.form = new MwwlDB.TextsForm(this.idPrefix);
+            }
+            TextsDialog.prototype.getFormKey = function () { return MwwlDB.TextsForm.formKey; };
+            TextsDialog.prototype.getIdProperty = function () { return MwwlDB.TextsRow.idProperty; };
+            TextsDialog.prototype.getLocalTextPrefix = function () { return MwwlDB.TextsRow.localTextPrefix; };
+            TextsDialog.prototype.getNameProperty = function () { return MwwlDB.TextsRow.nameProperty; };
+            TextsDialog.prototype.getService = function () { return MwwlDB.TextsService.baseUrl; };
+            TextsDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], TextsDialog);
+            return TextsDialog;
+        }(Serenity.EntityDialog));
+        MwwlDB.TextsDialog = TextsDialog;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var Common;
+    (function (Common) {
+        var GridEditorBase = (function (_super) {
+            __extends(GridEditorBase, _super);
+            function GridEditorBase(container) {
+                _super.call(this, container);
+                this.nextId = 1;
+            }
+            GridEditorBase.prototype.getIdProperty = function () { return "__id"; };
+            GridEditorBase.prototype.id = function (entity) {
+                return entity.__id;
+            };
+            GridEditorBase.prototype.save = function (opt, callback) {
+                var _this = this;
+                var request = opt.request;
+                var row = Q.deepClone(request.Entity);
+                var id = row.__id;
+                if (id == null) {
+                    row.__id = this.nextId++;
+                }
+                if (!this.validateEntity(row, id)) {
+                    return;
+                }
+                var items = this.view.getItems().slice();
+                if (id == null) {
+                    items.push(row);
+                }
+                else {
+                    var index = Q.indexOf(items, function (x) { return _this.id(x) === id; });
+                    items[index] = Q.deepClone({}, items[index], row);
+                }
+                this.setEntities(items);
+                callback({});
+            };
+            GridEditorBase.prototype.deleteEntity = function (id) {
+                this.view.deleteItem(id);
+                return true;
+            };
+            GridEditorBase.prototype.validateEntity = function (row, id) {
+                return true;
+            };
+            GridEditorBase.prototype.setEntities = function (items) {
+                this.view.setItems(items, true);
+            };
+            GridEditorBase.prototype.getNewEntity = function () {
+                return {};
+            };
+            GridEditorBase.prototype.getButtons = function () {
+                var _this = this;
+                return [{
+                        title: this.getAddButtonCaption(),
+                        cssClass: 'add-button',
+                        onClick: function () {
+                            _this.createEntityDialog(_this.getItemType(), function (dlg) {
+                                var dialog = dlg;
+                                dialog.onSave = function (opt, callback) { return _this.save(opt, callback); };
+                                dialog.loadEntityAndOpenDialog(_this.getNewEntity());
+                            });
+                        }
+                    }];
+            };
+            GridEditorBase.prototype.editItem = function (entityOrId) {
+                var _this = this;
+                var id = entityOrId;
+                var item = this.view.getItemById(id);
+                this.createEntityDialog(this.getItemType(), function (dlg) {
+                    var dialog = dlg;
+                    dialog.onDelete = function (opt, callback) {
+                        if (!_this.deleteEntity(id)) {
+                            return;
+                        }
+                        callback({});
+                    };
+                    dialog.onSave = function (opt, callback) { return _this.save(opt, callback); };
+                    dialog.loadEntityAndOpenDialog(item);
+                });
+                ;
+            };
+            GridEditorBase.prototype.getEditValue = function (property, target) {
+                target[property.name] = this.value;
+            };
+            GridEditorBase.prototype.setEditValue = function (source, property) {
+                this.value = source[property.name];
+            };
+            Object.defineProperty(GridEditorBase.prototype, "value", {
+                get: function () {
+                    return this.view.getItems().map(function (x) {
+                        var y = Q.deepClone(x);
+                        delete y['__id'];
+                        return y;
+                    });
+                },
+                set: function (value) {
+                    var _this = this;
+                    this.view.setItems((value || []).map(function (x) {
+                        var y = Q.deepClone(x);
+                        y.__id = _this.nextId++;
+                        return y;
+                    }), true);
+                },
+                enumerable: true,
+                configurable: true
+            });
+            GridEditorBase.prototype.getGridCanLoad = function () {
+                return false;
+            };
+            GridEditorBase.prototype.usePager = function () {
+                return false;
+            };
+            GridEditorBase.prototype.getInitialTitle = function () {
+                return null;
+            };
+            GridEditorBase.prototype.createQuickSearchInput = function () {
+            };
+            GridEditorBase = __decorate([
+                Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
+                Serenity.Decorators.editor(),
+                Serenity.Decorators.element("<div/>")
+            ], GridEditorBase);
+            return GridEditorBase;
+        }(Serenity.EntityGrid));
+        Common.GridEditorBase = GridEditorBase;
+    })(Common = MWWLAdmin.Common || (MWWLAdmin.Common = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var TextsEditor = (function (_super) {
+            __extends(TextsEditor, _super);
+            function TextsEditor(container) {
+                _super.call(this, container);
+            }
+            TextsEditor.prototype.getColumnsKey = function () { return 'MwwlDB.Texts'; };
+            TextsEditor.prototype.getDialogType = function () { return MwwlDB.TextsEditorDialog; };
+            TextsEditor.prototype.getLocalTextPrefix = function () { return MwwlDB.TextsRow.localTextPrefix; };
+            TextsEditor = __decorate([
+                Serenity.Decorators.registerClass()
+            ], TextsEditor);
+            return TextsEditor;
+        }(MWWLAdmin.Common.GridEditorBase));
+        MwwlDB.TextsEditor = TextsEditor;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var Common;
+    (function (Common) {
+        var GridEditorDialog = (function (_super) {
+            __extends(GridEditorDialog, _super);
+            function GridEditorDialog() {
+                _super.apply(this, arguments);
+            }
+            GridEditorDialog.prototype.getIdProperty = function () { return "__id"; };
+            GridEditorDialog.prototype.destroy = function () {
+                this.onSave = null;
+                this.onDelete = null;
+                _super.prototype.destroy.call(this);
+            };
+            GridEditorDialog.prototype.updateInterface = function () {
+                _super.prototype.updateInterface.call(this);
+                // apply changes button doesn't work properly with in-memory grids yet
+                if (this.applyChangesButton) {
+                    this.applyChangesButton.hide();
+                }
+            };
+            GridEditorDialog.prototype.saveHandler = function (options, callback) {
+                this.onSave && this.onSave(options, callback);
+            };
+            GridEditorDialog.prototype.deleteHandler = function (options, callback) {
+                this.onDelete && this.onDelete(options, callback);
+            };
+            GridEditorDialog = __decorate([
+                Serenity.Decorators.registerClass()
+            ], GridEditorDialog);
+            return GridEditorDialog;
+        }(Serenity.EntityDialog));
+        Common.GridEditorDialog = GridEditorDialog;
+    })(Common = MWWLAdmin.Common || (MWWLAdmin.Common = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var TextsEditorDialog = (function (_super) {
+            __extends(TextsEditorDialog, _super);
+            function TextsEditorDialog() {
+                _super.apply(this, arguments);
+                this.form = new MwwlDB.TextsForm(this.idPrefix);
+            }
+            TextsEditorDialog.prototype.getFormKey = function () { return MwwlDB.TextsForm.formKey; };
+            TextsEditorDialog.prototype.getLocalTextPrefix = function () { return MwwlDB.TextsRow.localTextPrefix; };
+            TextsEditorDialog.prototype.getNameProperty = function () { return MwwlDB.TextsRow.nameProperty; };
+            TextsEditorDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], TextsEditorDialog);
+            return TextsEditorDialog;
+        }(MWWLAdmin.Common.GridEditorDialog));
+        MwwlDB.TextsEditorDialog = TextsEditorDialog;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var TextsGrid = (function (_super) {
+            __extends(TextsGrid, _super);
+            function TextsGrid(container) {
+                _super.call(this, container);
+            }
+            TextsGrid.prototype.getColumnsKey = function () { return 'MwwlDB.Texts'; };
+            TextsGrid.prototype.getDialogType = function () { return MwwlDB.TextsDialog; };
+            TextsGrid.prototype.getIdProperty = function () { return MwwlDB.TextsRow.idProperty; };
+            TextsGrid.prototype.getLocalTextPrefix = function () { return MwwlDB.TextsRow.localTextPrefix; };
+            TextsGrid.prototype.getService = function () { return MwwlDB.TextsService.baseUrl; };
+            TextsGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], TextsGrid);
+            return TextsGrid;
+        }(Serenity.EntityGrid));
+        MwwlDB.TextsGrid = TextsGrid;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var ProductsDialog = (function (_super) {
+            __extends(ProductsDialog, _super);
+            function ProductsDialog() {
+                _super.apply(this, arguments);
+                this.form = new MwwlDB.ProductsForm(this.idPrefix);
+            }
+            ProductsDialog.prototype.getFormKey = function () { return MwwlDB.ProductsForm.formKey; };
+            ProductsDialog.prototype.getIdProperty = function () { return MwwlDB.ProductsRow.idProperty; };
+            ProductsDialog.prototype.getLocalTextPrefix = function () { return MwwlDB.ProductsRow.localTextPrefix; };
+            ProductsDialog.prototype.getNameProperty = function () { return MwwlDB.ProductsRow.nameProperty; };
+            ProductsDialog.prototype.getService = function () { return MwwlDB.ProductsService.baseUrl; };
+            ProductsDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], ProductsDialog);
+            return ProductsDialog;
+        }(Serenity.EntityDialog));
+        MwwlDB.ProductsDialog = ProductsDialog;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var ProductsEditor = (function (_super) {
+            __extends(ProductsEditor, _super);
+            function ProductsEditor(container) {
+                _super.call(this, container);
+            }
+            ProductsEditor.prototype.getColumnsKey = function () { return 'MwwlDB.Products'; };
+            ProductsEditor.prototype.getDialogType = function () { return MwwlDB.ProductsEditorDialog; };
+            ProductsEditor.prototype.getLocalTextPrefix = function () { return MwwlDB.ProductsRow.localTextPrefix; };
+            ProductsEditor = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ProductsEditor);
+            return ProductsEditor;
+        }(MWWLAdmin.Common.GridEditorBase));
+        MwwlDB.ProductsEditor = ProductsEditor;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var ProductsEditorDialog = (function (_super) {
+            __extends(ProductsEditorDialog, _super);
+            function ProductsEditorDialog() {
+                _super.apply(this, arguments);
+                this.form = new MwwlDB.ProductsForm(this.idPrefix);
+            }
+            ProductsEditorDialog.prototype.getFormKey = function () { return MwwlDB.ProductsForm.formKey; };
+            ProductsEditorDialog.prototype.getLocalTextPrefix = function () { return MwwlDB.ProductsRow.localTextPrefix; };
+            ProductsEditorDialog.prototype.getNameProperty = function () { return MwwlDB.ProductsRow.nameProperty; };
+            ProductsEditorDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], ProductsEditorDialog);
+            return ProductsEditorDialog;
+        }(MWWLAdmin.Common.GridEditorDialog));
+        MwwlDB.ProductsEditorDialog = ProductsEditorDialog;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var ProductsGrid = (function (_super) {
+            __extends(ProductsGrid, _super);
+            function ProductsGrid(container) {
+                _super.call(this, container);
+            }
+            ProductsGrid.prototype.getColumnsKey = function () { return 'MwwlDB.Products'; };
+            ProductsGrid.prototype.getDialogType = function () { return MwwlDB.ProductsDialog; };
+            ProductsGrid.prototype.getIdProperty = function () { return MwwlDB.ProductsRow.idProperty; };
+            ProductsGrid.prototype.getLocalTextPrefix = function () { return MwwlDB.ProductsRow.localTextPrefix; };
+            ProductsGrid.prototype.getService = function () { return MwwlDB.ProductsService.baseUrl; };
+            ProductsGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], ProductsGrid);
+            return ProductsGrid;
+        }(Serenity.EntityGrid));
+        MwwlDB.ProductsGrid = ProductsGrid;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PricesDialog = (function (_super) {
+            __extends(PricesDialog, _super);
+            function PricesDialog() {
+                _super.apply(this, arguments);
+                this.form = new MwwlDB.PricesForm(this.idPrefix);
+            }
+            PricesDialog.prototype.getFormKey = function () { return MwwlDB.PricesForm.formKey; };
+            PricesDialog.prototype.getIdProperty = function () { return MwwlDB.PricesRow.idProperty; };
+            PricesDialog.prototype.getLocalTextPrefix = function () { return MwwlDB.PricesRow.localTextPrefix; };
+            PricesDialog.prototype.getNameProperty = function () { return MwwlDB.PricesRow.nameProperty; };
+            PricesDialog.prototype.getService = function () { return MwwlDB.PricesService.baseUrl; };
+            PricesDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], PricesDialog);
+            return PricesDialog;
+        }(Serenity.EntityDialog));
+        MwwlDB.PricesDialog = PricesDialog;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PricesEditor = (function (_super) {
+            __extends(PricesEditor, _super);
+            function PricesEditor(container) {
+                _super.call(this, container);
+            }
+            PricesEditor.prototype.getColumnsKey = function () { return 'MwwlDB.Prices'; };
+            PricesEditor.prototype.getDialogType = function () { return MwwlDB.PricesEditorDialog; };
+            PricesEditor.prototype.getLocalTextPrefix = function () { return MwwlDB.PricesRow.localTextPrefix; };
+            PricesEditor = __decorate([
+                Serenity.Decorators.registerClass()
+            ], PricesEditor);
+            return PricesEditor;
+        }(MWWLAdmin.Common.GridEditorBase));
+        MwwlDB.PricesEditor = PricesEditor;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PricesEditorDialog = (function (_super) {
+            __extends(PricesEditorDialog, _super);
+            function PricesEditorDialog() {
+                _super.apply(this, arguments);
+                this.form = new MwwlDB.PricesForm(this.idPrefix);
+            }
+            PricesEditorDialog.prototype.getFormKey = function () { return MwwlDB.PricesForm.formKey; };
+            PricesEditorDialog.prototype.getLocalTextPrefix = function () { return MwwlDB.PricesRow.localTextPrefix; };
+            PricesEditorDialog.prototype.getNameProperty = function () { return MwwlDB.PricesRow.nameProperty; };
+            PricesEditorDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], PricesEditorDialog);
+            return PricesEditorDialog;
+        }(MWWLAdmin.Common.GridEditorDialog));
+        MwwlDB.PricesEditorDialog = PricesEditorDialog;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PricesGrid = (function (_super) {
+            __extends(PricesGrid, _super);
+            function PricesGrid(container) {
+                _super.call(this, container);
+            }
+            PricesGrid.prototype.getColumnsKey = function () { return 'MwwlDB.Prices'; };
+            PricesGrid.prototype.getDialogType = function () { return MwwlDB.PricesDialog; };
+            PricesGrid.prototype.getIdProperty = function () { return MwwlDB.PricesRow.idProperty; };
+            PricesGrid.prototype.getLocalTextPrefix = function () { return MwwlDB.PricesRow.localTextPrefix; };
+            PricesGrid.prototype.getService = function () { return MwwlDB.PricesService.baseUrl; };
+            PricesGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], PricesGrid);
+            return PricesGrid;
+        }(Serenity.EntityGrid));
+        MwwlDB.PricesGrid = PricesGrid;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PaintingsDialog = (function (_super) {
+            __extends(PaintingsDialog, _super);
+            function PaintingsDialog() {
+                _super.apply(this, arguments);
+                this.form = new MwwlDB.PaintingsForm(this.idPrefix);
+            }
+            PaintingsDialog.prototype.getFormKey = function () { return MwwlDB.PaintingsForm.formKey; };
+            PaintingsDialog.prototype.getIdProperty = function () { return MwwlDB.PaintingsRow.idProperty; };
+            PaintingsDialog.prototype.getLocalTextPrefix = function () { return MwwlDB.PaintingsRow.localTextPrefix; };
+            PaintingsDialog.prototype.getNameProperty = function () { return MwwlDB.PaintingsRow.nameProperty; };
+            PaintingsDialog.prototype.getService = function () { return MwwlDB.PaintingsService.baseUrl; };
+            PaintingsDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], PaintingsDialog);
+            return PaintingsDialog;
+        }(Serenity.EntityDialog));
+        MwwlDB.PaintingsDialog = PaintingsDialog;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PaintingsEditor = (function (_super) {
+            __extends(PaintingsEditor, _super);
+            function PaintingsEditor(container) {
+                _super.call(this, container);
+            }
+            PaintingsEditor.prototype.getColumnsKey = function () { return 'MwwlDB.Paintings'; };
+            PaintingsEditor.prototype.getDialogType = function () { return MwwlDB.PaintingsEditorDialog; };
+            PaintingsEditor.prototype.getLocalTextPrefix = function () { return MwwlDB.PaintingsRow.localTextPrefix; };
+            PaintingsEditor = __decorate([
+                Serenity.Decorators.registerClass()
+            ], PaintingsEditor);
+            return PaintingsEditor;
+        }(MWWLAdmin.Common.GridEditorBase));
+        MwwlDB.PaintingsEditor = PaintingsEditor;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PaintingsEditorDialog = (function (_super) {
+            __extends(PaintingsEditorDialog, _super);
+            function PaintingsEditorDialog() {
+                _super.apply(this, arguments);
+                this.form = new MwwlDB.PaintingsForm(this.idPrefix);
+            }
+            PaintingsEditorDialog.prototype.getFormKey = function () { return MwwlDB.PaintingsForm.formKey; };
+            PaintingsEditorDialog.prototype.getLocalTextPrefix = function () { return MwwlDB.PaintingsRow.localTextPrefix; };
+            PaintingsEditorDialog.prototype.getNameProperty = function () { return MwwlDB.PaintingsRow.nameProperty; };
+            PaintingsEditorDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], PaintingsEditorDialog);
+            return PaintingsEditorDialog;
+        }(MWWLAdmin.Common.GridEditorDialog));
+        MwwlDB.PaintingsEditorDialog = PaintingsEditorDialog;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PaintingsGrid = (function (_super) {
+            __extends(PaintingsGrid, _super);
+            function PaintingsGrid(container) {
+                _super.call(this, container);
+            }
+            PaintingsGrid.prototype.getColumnsKey = function () { return 'MwwlDB.Paintings'; };
+            PaintingsGrid.prototype.getDialogType = function () { return MwwlDB.PaintingsDialog; };
+            PaintingsGrid.prototype.getIdProperty = function () { return MwwlDB.PaintingsRow.idProperty; };
+            PaintingsGrid.prototype.getLocalTextPrefix = function () { return MwwlDB.PaintingsRow.localTextPrefix; };
+            PaintingsGrid.prototype.getService = function () { return MwwlDB.PaintingsService.baseUrl; };
+            PaintingsGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], PaintingsGrid);
+            return PaintingsGrid;
+        }(Serenity.EntityGrid));
+        MwwlDB.PaintingsGrid = PaintingsGrid;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var CategoriesDialog = (function (_super) {
+            __extends(CategoriesDialog, _super);
+            function CategoriesDialog() {
+                _super.apply(this, arguments);
+                this.form = new MwwlDB.CategoriesForm(this.idPrefix);
+            }
+            CategoriesDialog.prototype.getFormKey = function () { return MwwlDB.CategoriesForm.formKey; };
+            CategoriesDialog.prototype.getIdProperty = function () { return MwwlDB.CategoriesRow.idProperty; };
+            CategoriesDialog.prototype.getLocalTextPrefix = function () { return MwwlDB.CategoriesRow.localTextPrefix; };
+            CategoriesDialog.prototype.getNameProperty = function () { return MwwlDB.CategoriesRow.nameProperty; };
+            CategoriesDialog.prototype.getService = function () { return MwwlDB.CategoriesService.baseUrl; };
+            CategoriesDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], CategoriesDialog);
+            return CategoriesDialog;
+        }(Serenity.EntityDialog));
+        MwwlDB.CategoriesDialog = CategoriesDialog;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var CategoriesEditor = (function (_super) {
+            __extends(CategoriesEditor, _super);
+            function CategoriesEditor(container) {
+                _super.call(this, container);
+            }
+            CategoriesEditor.prototype.getColumnsKey = function () { return 'MwwlDB.Categories'; };
+            CategoriesEditor.prototype.getDialogType = function () { return MwwlDB.CategoriesEditorDialog; };
+            CategoriesEditor.prototype.getLocalTextPrefix = function () { return MwwlDB.CategoriesRow.localTextPrefix; };
+            CategoriesEditor = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CategoriesEditor);
+            return CategoriesEditor;
+        }(MWWLAdmin.Common.GridEditorBase));
+        MwwlDB.CategoriesEditor = CategoriesEditor;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var CategoriesEditorDialog = (function (_super) {
+            __extends(CategoriesEditorDialog, _super);
+            function CategoriesEditorDialog() {
+                _super.apply(this, arguments);
+                this.form = new MwwlDB.CategoriesForm(this.idPrefix);
+            }
+            CategoriesEditorDialog.prototype.getFormKey = function () { return MwwlDB.CategoriesForm.formKey; };
+            CategoriesEditorDialog.prototype.getLocalTextPrefix = function () { return MwwlDB.CategoriesRow.localTextPrefix; };
+            CategoriesEditorDialog.prototype.getNameProperty = function () { return MwwlDB.CategoriesRow.nameProperty; };
+            CategoriesEditorDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], CategoriesEditorDialog);
+            return CategoriesEditorDialog;
+        }(MWWLAdmin.Common.GridEditorDialog));
+        MwwlDB.CategoriesEditorDialog = CategoriesEditorDialog;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var CategoriesGrid = (function (_super) {
+            __extends(CategoriesGrid, _super);
+            function CategoriesGrid(container) {
+                _super.call(this, container);
+            }
+            CategoriesGrid.prototype.getColumnsKey = function () { return 'MwwlDB.Categories'; };
+            CategoriesGrid.prototype.getDialogType = function () { return MwwlDB.CategoriesDialog; };
+            CategoriesGrid.prototype.getIdProperty = function () { return MwwlDB.CategoriesRow.idProperty; };
+            CategoriesGrid.prototype.getLocalTextPrefix = function () { return MwwlDB.CategoriesRow.localTextPrefix; };
+            CategoriesGrid.prototype.getService = function () { return MwwlDB.CategoriesService.baseUrl; };
+            CategoriesGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], CategoriesGrid);
+            return CategoriesGrid;
+        }(Serenity.EntityGrid));
+        MwwlDB.CategoriesGrid = CategoriesGrid;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
     var Membership;
     (function (Membership) {
         var LoginPanel = (function (_super) {
@@ -989,6 +1601,251 @@ var MWWLAdmin;
 })(MWWLAdmin || (MWWLAdmin = {}));
 var MWWLAdmin;
 (function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var CategoriesForm = (function (_super) {
+            __extends(CategoriesForm, _super);
+            function CategoriesForm() {
+                _super.apply(this, arguments);
+            }
+            CategoriesForm.formKey = 'MwwlDB.Categories';
+            return CategoriesForm;
+        }(Serenity.PrefixedContext));
+        MwwlDB.CategoriesForm = CategoriesForm;
+        [['Name', function () { return Serenity.StringEditor; }], ['FolderName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(CategoriesForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var CategoriesRow;
+        (function (CategoriesRow) {
+            CategoriesRow.idProperty = 'Id';
+            CategoriesRow.nameProperty = 'Name';
+            CategoriesRow.localTextPrefix = 'MwwlDB.Categories';
+            var Fields;
+            (function (Fields) {
+            })(Fields = CategoriesRow.Fields || (CategoriesRow.Fields = {}));
+            ['Id', 'Name', 'FolderName'].forEach(function (x) { return Fields[x] = x; });
+        })(CategoriesRow = MwwlDB.CategoriesRow || (MwwlDB.CategoriesRow = {}));
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var CategoriesService;
+        (function (CategoriesService) {
+            CategoriesService.baseUrl = 'MwwlDB/Categories';
+            var Methods;
+            (function (Methods) {
+            })(Methods = CategoriesService.Methods || (CategoriesService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                CategoriesService[x] = function (r, s, o) { return Q.serviceRequest(CategoriesService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = CategoriesService.baseUrl + '/' + x;
+            });
+        })(CategoriesService = MwwlDB.CategoriesService || (MwwlDB.CategoriesService = {}));
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PaintingsForm = (function (_super) {
+            __extends(PaintingsForm, _super);
+            function PaintingsForm() {
+                _super.apply(this, arguments);
+            }
+            PaintingsForm.formKey = 'MwwlDB.Paintings';
+            return PaintingsForm;
+        }(Serenity.PrefixedContext));
+        MwwlDB.PaintingsForm = PaintingsForm;
+        [['Title', function () { return Serenity.StringEditor; }], ['CategoryId', function () { return Serenity.IntegerEditor; }], ['OriginalFileName', function () { return Serenity.StringEditor; }], ['Dimension', function () { return Serenity.StringEditor; }], ['Workshop', function () { return Serenity.BooleanEditor; }], ['Large', function () { return Serenity.BooleanEditor; }], ['Small', function () { return Serenity.BooleanEditor; }], ['OriginalAvailable', function () { return Serenity.BooleanEditor; }], ['OriginalPrice', function () { return Serenity.DecimalEditor; }], ['Framed', function () { return Serenity.BooleanEditor; }]].forEach(function (x) { return Object.defineProperty(PaintingsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PaintingsRow;
+        (function (PaintingsRow) {
+            PaintingsRow.idProperty = 'Id';
+            PaintingsRow.nameProperty = 'Title';
+            PaintingsRow.localTextPrefix = 'MwwlDB.Paintings';
+            var Fields;
+            (function (Fields) {
+            })(Fields = PaintingsRow.Fields || (PaintingsRow.Fields = {}));
+            ['Id', 'Title', 'CategoryId', 'OriginalFileName', 'Dimension', 'Workshop', 'Large', 'Small', 'OriginalAvailable', 'OriginalPrice', 'Framed', 'CategoryName', 'CategoryFolderName'].forEach(function (x) { return Fields[x] = x; });
+        })(PaintingsRow = MwwlDB.PaintingsRow || (MwwlDB.PaintingsRow = {}));
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PaintingsService;
+        (function (PaintingsService) {
+            PaintingsService.baseUrl = 'MwwlDB/Paintings';
+            var Methods;
+            (function (Methods) {
+            })(Methods = PaintingsService.Methods || (PaintingsService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                PaintingsService[x] = function (r, s, o) { return Q.serviceRequest(PaintingsService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = PaintingsService.baseUrl + '/' + x;
+            });
+        })(PaintingsService = MwwlDB.PaintingsService || (MwwlDB.PaintingsService = {}));
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PricesForm = (function (_super) {
+            __extends(PricesForm, _super);
+            function PricesForm() {
+                _super.apply(this, arguments);
+            }
+            PricesForm.formKey = 'MwwlDB.Prices';
+            return PricesForm;
+        }(Serenity.PrefixedContext));
+        MwwlDB.PricesForm = PricesForm;
+        [['Item', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['Price', function () { return Serenity.DecimalEditor; }], ['Active', function () { return Serenity.BooleanEditor; }], ['ProductId', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(PricesForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PricesRow;
+        (function (PricesRow) {
+            PricesRow.idProperty = 'Id';
+            PricesRow.nameProperty = 'Item';
+            PricesRow.localTextPrefix = 'MwwlDB.Prices';
+            var Fields;
+            (function (Fields) {
+            })(Fields = PricesRow.Fields || (PricesRow.Fields = {}));
+            ['Id', 'Item', 'Description', 'Price', 'Active', 'ProductId', 'ProductTitle', 'ProductDescription', 'ProductAvailable', 'ProductSequence'].forEach(function (x) { return Fields[x] = x; });
+        })(PricesRow = MwwlDB.PricesRow || (MwwlDB.PricesRow = {}));
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PricesService;
+        (function (PricesService) {
+            PricesService.baseUrl = 'MwwlDB/Prices';
+            var Methods;
+            (function (Methods) {
+            })(Methods = PricesService.Methods || (PricesService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                PricesService[x] = function (r, s, o) { return Q.serviceRequest(PricesService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = PricesService.baseUrl + '/' + x;
+            });
+        })(PricesService = MwwlDB.PricesService || (MwwlDB.PricesService = {}));
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var ProductsForm = (function (_super) {
+            __extends(ProductsForm, _super);
+            function ProductsForm() {
+                _super.apply(this, arguments);
+            }
+            ProductsForm.formKey = 'MwwlDB.Products';
+            return ProductsForm;
+        }(Serenity.PrefixedContext));
+        MwwlDB.ProductsForm = ProductsForm;
+        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['Available', function () { return Serenity.BooleanEditor; }], ['Sequence', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(ProductsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var ProductsRow;
+        (function (ProductsRow) {
+            ProductsRow.idProperty = 'Id';
+            ProductsRow.nameProperty = 'Title';
+            ProductsRow.localTextPrefix = 'MwwlDB.Products';
+            var Fields;
+            (function (Fields) {
+            })(Fields = ProductsRow.Fields || (ProductsRow.Fields = {}));
+            ['Id', 'Title', 'Description', 'Available', 'Sequence'].forEach(function (x) { return Fields[x] = x; });
+        })(ProductsRow = MwwlDB.ProductsRow || (MwwlDB.ProductsRow = {}));
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var ProductsService;
+        (function (ProductsService) {
+            ProductsService.baseUrl = 'MwwlDB/Products';
+            var Methods;
+            (function (Methods) {
+            })(Methods = ProductsService.Methods || (ProductsService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                ProductsService[x] = function (r, s, o) { return Q.serviceRequest(ProductsService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = ProductsService.baseUrl + '/' + x;
+            });
+        })(ProductsService = MwwlDB.ProductsService || (MwwlDB.ProductsService = {}));
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var TextsForm = (function (_super) {
+            __extends(TextsForm, _super);
+            function TextsForm() {
+                _super.apply(this, arguments);
+            }
+            TextsForm.formKey = 'MwwlDB.Texts';
+            return TextsForm;
+        }(Serenity.PrefixedContext));
+        MwwlDB.TextsForm = TextsForm;
+        [['Text', function () { return Serenity.StringEditor; }], ['Note', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(TextsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var TextsRow;
+        (function (TextsRow) {
+            TextsRow.idProperty = 'Id';
+            TextsRow.nameProperty = 'Id';
+            TextsRow.localTextPrefix = 'MwwlDB.Texts';
+            var Fields;
+            (function (Fields) {
+            })(Fields = TextsRow.Fields || (TextsRow.Fields = {}));
+            ['Id', 'Text', 'Note'].forEach(function (x) { return Fields[x] = x; });
+        })(TextsRow = MwwlDB.TextsRow || (MwwlDB.TextsRow = {}));
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var TextsService;
+        (function (TextsService) {
+            TextsService.baseUrl = 'MwwlDB/Texts';
+            var Methods;
+            (function (Methods) {
+            })(Methods = TextsService.Methods || (TextsService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                TextsService[x] = function (r, s, o) { return Q.serviceRequest(TextsService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = TextsService.baseUrl + '/' + x;
+            });
+        })(TextsService = MwwlDB.TextsService || (MwwlDB.TextsService = {}));
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
     var BasicProgressDialog = (function (_super) {
         __extends(BasicProgressDialog, _super);
         function BasicProgressDialog() {
@@ -1279,168 +2136,6 @@ var MWWLAdmin;
             }
             ExcelExportHelper.createToolButton = createToolButton;
         })(ExcelExportHelper = Common.ExcelExportHelper || (Common.ExcelExportHelper = {}));
-    })(Common = MWWLAdmin.Common || (MWWLAdmin.Common = {}));
-})(MWWLAdmin || (MWWLAdmin = {}));
-var MWWLAdmin;
-(function (MWWLAdmin) {
-    var Common;
-    (function (Common) {
-        var GridEditorBase = (function (_super) {
-            __extends(GridEditorBase, _super);
-            function GridEditorBase(container) {
-                _super.call(this, container);
-                this.nextId = 1;
-            }
-            GridEditorBase.prototype.getIdProperty = function () { return "__id"; };
-            GridEditorBase.prototype.id = function (entity) {
-                return entity.__id;
-            };
-            GridEditorBase.prototype.save = function (opt, callback) {
-                var _this = this;
-                var request = opt.request;
-                var row = Q.deepClone(request.Entity);
-                var id = row.__id;
-                if (id == null) {
-                    row.__id = this.nextId++;
-                }
-                if (!this.validateEntity(row, id)) {
-                    return;
-                }
-                var items = this.view.getItems().slice();
-                if (id == null) {
-                    items.push(row);
-                }
-                else {
-                    var index = Q.indexOf(items, function (x) { return _this.id(x) === id; });
-                    items[index] = Q.deepClone({}, items[index], row);
-                }
-                this.setEntities(items);
-                callback({});
-            };
-            GridEditorBase.prototype.deleteEntity = function (id) {
-                this.view.deleteItem(id);
-                return true;
-            };
-            GridEditorBase.prototype.validateEntity = function (row, id) {
-                return true;
-            };
-            GridEditorBase.prototype.setEntities = function (items) {
-                this.view.setItems(items, true);
-            };
-            GridEditorBase.prototype.getNewEntity = function () {
-                return {};
-            };
-            GridEditorBase.prototype.getButtons = function () {
-                var _this = this;
-                return [{
-                        title: this.getAddButtonCaption(),
-                        cssClass: 'add-button',
-                        onClick: function () {
-                            _this.createEntityDialog(_this.getItemType(), function (dlg) {
-                                var dialog = dlg;
-                                dialog.onSave = function (opt, callback) { return _this.save(opt, callback); };
-                                dialog.loadEntityAndOpenDialog(_this.getNewEntity());
-                            });
-                        }
-                    }];
-            };
-            GridEditorBase.prototype.editItem = function (entityOrId) {
-                var _this = this;
-                var id = entityOrId;
-                var item = this.view.getItemById(id);
-                this.createEntityDialog(this.getItemType(), function (dlg) {
-                    var dialog = dlg;
-                    dialog.onDelete = function (opt, callback) {
-                        if (!_this.deleteEntity(id)) {
-                            return;
-                        }
-                        callback({});
-                    };
-                    dialog.onSave = function (opt, callback) { return _this.save(opt, callback); };
-                    dialog.loadEntityAndOpenDialog(item);
-                });
-                ;
-            };
-            GridEditorBase.prototype.getEditValue = function (property, target) {
-                target[property.name] = this.value;
-            };
-            GridEditorBase.prototype.setEditValue = function (source, property) {
-                this.value = source[property.name];
-            };
-            Object.defineProperty(GridEditorBase.prototype, "value", {
-                get: function () {
-                    return this.view.getItems().map(function (x) {
-                        var y = Q.deepClone(x);
-                        delete y['__id'];
-                        return y;
-                    });
-                },
-                set: function (value) {
-                    var _this = this;
-                    this.view.setItems((value || []).map(function (x) {
-                        var y = Q.deepClone(x);
-                        y.__id = _this.nextId++;
-                        return y;
-                    }), true);
-                },
-                enumerable: true,
-                configurable: true
-            });
-            GridEditorBase.prototype.getGridCanLoad = function () {
-                return false;
-            };
-            GridEditorBase.prototype.usePager = function () {
-                return false;
-            };
-            GridEditorBase.prototype.getInitialTitle = function () {
-                return null;
-            };
-            GridEditorBase.prototype.createQuickSearchInput = function () {
-            };
-            GridEditorBase = __decorate([
-                Serenity.Decorators.registerClass([Serenity.IGetEditValue, Serenity.ISetEditValue]),
-                Serenity.Decorators.editor(),
-                Serenity.Decorators.element("<div/>")
-            ], GridEditorBase);
-            return GridEditorBase;
-        }(Serenity.EntityGrid));
-        Common.GridEditorBase = GridEditorBase;
-    })(Common = MWWLAdmin.Common || (MWWLAdmin.Common = {}));
-})(MWWLAdmin || (MWWLAdmin = {}));
-var MWWLAdmin;
-(function (MWWLAdmin) {
-    var Common;
-    (function (Common) {
-        var GridEditorDialog = (function (_super) {
-            __extends(GridEditorDialog, _super);
-            function GridEditorDialog() {
-                _super.apply(this, arguments);
-            }
-            GridEditorDialog.prototype.getIdProperty = function () { return "__id"; };
-            GridEditorDialog.prototype.destroy = function () {
-                this.onSave = null;
-                this.onDelete = null;
-                _super.prototype.destroy.call(this);
-            };
-            GridEditorDialog.prototype.updateInterface = function () {
-                _super.prototype.updateInterface.call(this);
-                // apply changes button doesn't work properly with in-memory grids yet
-                if (this.applyChangesButton) {
-                    this.applyChangesButton.hide();
-                }
-            };
-            GridEditorDialog.prototype.saveHandler = function (options, callback) {
-                this.onSave && this.onSave(options, callback);
-            };
-            GridEditorDialog.prototype.deleteHandler = function (options, callback) {
-                this.onDelete && this.onDelete(options, callback);
-            };
-            GridEditorDialog = __decorate([
-                Serenity.Decorators.registerClass()
-            ], GridEditorDialog);
-            return GridEditorDialog;
-        }(Serenity.EntityDialog));
-        Common.GridEditorDialog = GridEditorDialog;
     })(Common = MWWLAdmin.Common || (MWWLAdmin.Common = {}));
 })(MWWLAdmin || (MWWLAdmin = {}));
 var MWWLAdmin;
