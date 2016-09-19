@@ -7,14 +7,14 @@ using System.ComponentModel;
 
 namespace MWWLAdmin.Administration
 {
-	public partial class RoleCheckEditorAttribute : CustomEditorAttribute
-	{
-		public const string Key = "MWWLAdmin.Administration.RoleCheckEditor";
+    public partial class RoleCheckEditorAttribute : CustomEditorAttribute
+    {
+        public const string Key = "MWWLAdmin.Administration.RoleCheckEditor";
 
-		public RoleCheckEditorAttribute()
-			: base(Key)
-		{
-		}
-	}
+        public RoleCheckEditorAttribute()
+            : base(Key)
+        {
+        }
+    }
 }
 

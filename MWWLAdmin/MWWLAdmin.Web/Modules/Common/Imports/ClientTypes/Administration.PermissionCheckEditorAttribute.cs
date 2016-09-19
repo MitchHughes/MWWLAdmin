@@ -7,20 +7,20 @@ using System.ComponentModel;
 
 namespace MWWLAdmin.Administration
 {
-	public partial class PermissionCheckEditorAttribute : CustomEditorAttribute
-	{
-		public const string Key = "MWWLAdmin.Administration.PermissionCheckEditor";
+    public partial class PermissionCheckEditorAttribute : CustomEditorAttribute
+    {
+        public const string Key = "MWWLAdmin.Administration.PermissionCheckEditor";
 
-		public PermissionCheckEditorAttribute()
-			: base(Key)
-		{
-		}
+        public PermissionCheckEditorAttribute()
+            : base(Key)
+        {
+        }
 
-		public Boolean ShowRevoke
-		{
-			get { return GetOption<Boolean>("showRevoke"); }
-			set { SetOption("showRevoke", value); }
-		}
-	}
+        public Boolean ShowRevoke
+        {
+            get { return GetOption<Boolean>("showRevoke"); }
+            set { SetOption("showRevoke", value); }
+        }
+    }
 }
 
