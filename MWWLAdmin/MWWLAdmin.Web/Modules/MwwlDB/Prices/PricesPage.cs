@@ -1,7 +1,5 @@
 ﻿
 
-[assembly:Serenity.Navigation.NavigationLink(int.MaxValue, "MwwlDB/Prices", typeof(MWWLAdmin.MwwlDB.Pages.PricesController))]
-
 namespace MWWLAdmin.MwwlDB.Pages
 {
     using Serenity;

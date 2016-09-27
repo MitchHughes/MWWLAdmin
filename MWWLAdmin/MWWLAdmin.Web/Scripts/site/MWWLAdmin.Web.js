@@ -1624,6 +1624,11 @@ var MWWLAdmin;
             CategoriesRow.idProperty = 'Id';
             CategoriesRow.nameProperty = 'Name';
             CategoriesRow.localTextPrefix = 'MwwlDB.Categories';
+            CategoriesRow.lookupKey = 'MwwlDB.Categories';
+            function getLookup() {
+                return Q.getLookup('MwwlDB.Categories');
+            }
+            CategoriesRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = CategoriesRow.Fields || (CategoriesRow.Fields = {}));
@@ -1661,7 +1666,7 @@ var MWWLAdmin;
             return PaintingsForm;
         }(Serenity.PrefixedContext));
         MwwlDB.PaintingsForm = PaintingsForm;
-        [['Title', function () { return Serenity.StringEditor; }], ['CategoryId', function () { return Serenity.IntegerEditor; }], ['OriginalFileName', function () { return Serenity.StringEditor; }], ['Dimension', function () { return Serenity.StringEditor; }], ['Workshop', function () { return Serenity.BooleanEditor; }], ['Large', function () { return Serenity.BooleanEditor; }], ['Small', function () { return Serenity.BooleanEditor; }], ['OriginalAvailable', function () { return Serenity.BooleanEditor; }], ['OriginalPrice', function () { return Serenity.DecimalEditor; }], ['Framed', function () { return Serenity.BooleanEditor; }]].forEach(function (x) { return Object.defineProperty(PaintingsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Title', function () { return Serenity.StringEditor; }], ['CategoryId', function () { return Serenity.LookupEditor; }], ['OriginalFileName', function () { return Serenity.StringEditor; }], ['Dimension', function () { return Serenity.StringEditor; }], ['Workshop', function () { return Serenity.BooleanEditor; }], ['Large', function () { return Serenity.BooleanEditor; }], ['Small', function () { return Serenity.BooleanEditor; }], ['OriginalAvailable', function () { return Serenity.BooleanEditor; }], ['OriginalPrice', function () { return Serenity.DecimalEditor; }], ['Framed', function () { return Serenity.BooleanEditor; }]].forEach(function (x) { return Object.defineProperty(PaintingsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
 })(MWWLAdmin || (MWWLAdmin = {}));
 var MWWLAdmin;
@@ -1710,7 +1715,7 @@ var MWWLAdmin;
             return PricesForm;
         }(Serenity.PrefixedContext));
         MwwlDB.PricesForm = PricesForm;
-        [['Item', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['Price', function () { return Serenity.DecimalEditor; }], ['Active', function () { return Serenity.BooleanEditor; }], ['ProductId', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(PricesForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Item', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['Price', function () { return Serenity.DecimalEditor; }], ['Active', function () { return Serenity.BooleanEditor; }], ['ProductId', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(PricesForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
 })(MWWLAdmin || (MWWLAdmin = {}));
 var MWWLAdmin;
@@ -1771,6 +1776,11 @@ var MWWLAdmin;
             ProductsRow.idProperty = 'Id';
             ProductsRow.nameProperty = 'Title';
             ProductsRow.localTextPrefix = 'MwwlDB.Products';
+            ProductsRow.lookupKey = 'MwwlDB.Products';
+            function getLookup() {
+                return Q.getLookup('MwwlDB.Products');
+            }
+            ProductsRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = ProductsRow.Fields || (ProductsRow.Fields = {}));

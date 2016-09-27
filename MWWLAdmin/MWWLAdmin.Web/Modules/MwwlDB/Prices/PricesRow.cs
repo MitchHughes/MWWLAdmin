@@ -30,7 +30,7 @@ namespace MWWLAdmin.MwwlDB.Entities
             set { Fields.Item[this] = value; }
         }
 
-        [DisplayName("Description"), Size(200)]
+        [DisplayName("Description"), Size(200), QuickSearch]
         public String Description
         {
             get { return Fields.Description[this]; }
@@ -52,6 +52,7 @@ namespace MWWLAdmin.MwwlDB.Entities
         }
 
         [DisplayName("Product"), Column("ProductID"), NotNull, ForeignKey("[dbo].[Products]", "ID"), LeftJoin("jProduct"), TextualField("ProductTitle")]
+		[LookupEditor("MwwlDB.Products")]
         public Int32? ProductId
         {
             get { return Fields.ProductId[this]; }

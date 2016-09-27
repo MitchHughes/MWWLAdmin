@@ -17,7 +17,7 @@ namespace MWWLAdmin.MwwlDB.Columns
         public Guid Id { get; set; }
         [EditLink]
         public String Title { get; set; }
-        public Int32 CategoryId { get; set; }
+		public String CategoryName { get; set; }
         public String OriginalFileName { get; set; }
         public String Dimension { get; set; }
         public Boolean Workshop { get; set; }

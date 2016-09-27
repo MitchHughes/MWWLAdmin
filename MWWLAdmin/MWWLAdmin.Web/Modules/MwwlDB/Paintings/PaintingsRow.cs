@@ -16,7 +16,7 @@ namespace MWWLAdmin.MwwlDB.Entities
     [ModifyPermission("Administration")]
     public sealed class PaintingsRow : Row, IIdRow, INameRow
     {
-        [DisplayName("Id"), Column("ID"), PrimaryKey]
+        [DisplayName("Id"), Column("ID"), PrimaryKey, QuickSearch]
         public Guid? Id
         {
             get { return Fields.Id[this]; }
@@ -31,6 +31,7 @@ namespace MWWLAdmin.MwwlDB.Entities
         }
 
         [DisplayName("Category"), Column("CategoryID"), NotNull, ForeignKey("[dbo].[Categories]", "ID"), LeftJoin("jCategory"), TextualField("CategoryName")]
+		[LookupEditor("MwwlDB.Categories")]
         public Int32? CategoryId
         {
             get { return Fields.CategoryId[this]; }

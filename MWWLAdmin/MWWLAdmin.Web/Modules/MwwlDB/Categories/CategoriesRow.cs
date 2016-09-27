@@ -14,6 +14,7 @@ namespace MWWLAdmin.MwwlDB.Entities
     [ConnectionKey("Default"), DisplayName("Categories"), InstanceName("Categories"), TwoLevelCached]
     [ReadPermission("Administration")]
     [ModifyPermission("Administration")]
+	[LookupScript("MwwlDB.Categories")]
     public sealed class CategoriesRow : Row, IIdRow, INameRow
     {
         [DisplayName("Id"), Column("ID"), Identity]

@@ -20,6 +20,7 @@ namespace MWWLAdmin.MwwlDB.Columns
         public String Description { get; set; }
         public Decimal Price { get; set; }
         public Boolean Active { get; set; }
-        public Int32 ProductId { get; set; }
-    }
+		public String ProductTitle { get; set; }
+
+	}
 }

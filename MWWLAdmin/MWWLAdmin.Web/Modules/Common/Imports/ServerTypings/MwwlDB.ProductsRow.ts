@@ -11,6 +11,11 @@
         export const idProperty = 'Id';
         export const nameProperty = 'Title';
         export const localTextPrefix = 'MwwlDB.Products';
+        export const lookupKey = 'MwwlDB.Products';
+
+        export function getLookup(): Q.Lookup<ProductsRow> {
+            return Q.getLookup<ProductsRow>('MwwlDB.Products');
+        }
 
         export namespace Fields {
             export declare const Id: string;

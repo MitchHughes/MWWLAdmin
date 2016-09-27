@@ -14,6 +14,7 @@ namespace MWWLAdmin.MwwlDB.Entities
     [ConnectionKey("Default"), DisplayName("Products"), InstanceName("Products"), TwoLevelCached]
     [ReadPermission("Administration")]
     [ModifyPermission("Administration")]
+	[LookupScript("MwwlDB.Products")]
     public sealed class ProductsRow : Row, IIdRow, INameRow
     {
         [DisplayName("Id"), Column("ID"), Identity]
@@ -30,7 +31,7 @@ namespace MWWLAdmin.MwwlDB.Entities
             set { Fields.Title[this] = value; }
         }
 
-        [DisplayName("Description"), Size(200)]
+        [DisplayName("Description"), Size(200), QuickSearch]
         public String Description
         {
             get { return Fields.Description[this]; }

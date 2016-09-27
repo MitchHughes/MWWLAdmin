@@ -828,6 +828,8 @@ declare namespace MWWLAdmin.MwwlDB {
         const idProperty: string;
         const nameProperty: string;
         const localTextPrefix: string;
+        const lookupKey: string;
+        function getLookup(): Q.Lookup<CategoriesRow>;
         namespace Fields {
             const Id: string;
             const Name: string;
@@ -860,7 +862,7 @@ declare namespace MWWLAdmin.MwwlDB {
     }
     interface PaintingsForm {
         Title: Serenity.StringEditor;
-        CategoryId: Serenity.IntegerEditor;
+        CategoryId: Serenity.LookupEditor;
         OriginalFileName: Serenity.StringEditor;
         Dimension: Serenity.StringEditor;
         Workshop: Serenity.BooleanEditor;
@@ -936,7 +938,7 @@ declare namespace MWWLAdmin.MwwlDB {
         Description: Serenity.StringEditor;
         Price: Serenity.DecimalEditor;
         Active: Serenity.BooleanEditor;
-        ProductId: Serenity.IntegerEditor;
+        ProductId: Serenity.LookupEditor;
     }
 }
 declare namespace MWWLAdmin.MwwlDB {
@@ -1012,6 +1014,8 @@ declare namespace MWWLAdmin.MwwlDB {
         const idProperty: string;
         const nameProperty: string;
         const localTextPrefix: string;
+        const lookupKey: string;
+        function getLookup(): Q.Lookup<ProductsRow>;
         namespace Fields {
             const Id: string;
             const Title: string;

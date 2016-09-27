@@ -16,21 +16,21 @@ namespace MWWLAdmin.MwwlDB.Entities
     [ModifyPermission("Administration")]
     public sealed class TextsRow : Row, IIdRow, INameRow
     {
-        [DisplayName("Id"), Column("ID"), Size(20), PrimaryKey, QuickSearch]
+        [DisplayName("Id"), Column("ID"), Size(20), PrimaryKey]
         public String Id
         {
             get { return Fields.Id[this]; }
             set { Fields.Id[this] = value; }
         }
 
-        [DisplayName("Text"), Size(200), NotNull]
+        [DisplayName("Text"), Size(200), NotNull, QuickSearch]
         public String Text
         {
             get { return Fields.Text[this]; }
             set { Fields.Text[this] = value; }
         }
 
-        [DisplayName("Note"), Size(200)]
+        [DisplayName("Note"), Size(200), QuickSearch]
         public String Note
         {
             get { return Fields.Note[this]; }
