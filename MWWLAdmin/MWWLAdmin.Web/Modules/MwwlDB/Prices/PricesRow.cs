@@ -37,7 +37,7 @@ namespace MWWLAdmin.MwwlDB.Entities
             set { Fields.Description[this] = value; }
         }
 
-        [DisplayName("Price"), Size(19), Scale(4), NotNull]
+        [DisplayName("Price"), Size(19), Scale(2), NotNull]
         public Decimal? Price
         {
             get { return Fields.Price[this]; }

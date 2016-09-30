@@ -16,15 +16,22 @@ namespace MWWLAdmin.MwwlDB.Columns
         [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
         public Guid Id { get; set; }
         [EditLink]
-        public String Title { get; set; }
+		[Width(165)]
+		public String Title { get; set; }
+		[Width(119)]
 		public String CategoryName { get; set; }
         public String OriginalFileName { get; set; }
-        public String Dimension { get; set; }
-        public Boolean Workshop { get; set; }
+		[Width(84)]
+		public String Dimension { get; set; }
+		[Width(75), AlignCenter]
+		public Boolean Workshop { get; set; }
         public Boolean Large { get; set; }
         public Boolean Small { get; set; }
-        public Boolean OriginalAvailable { get; set; }
-        public Decimal OriginalPrice { get; set; }
-        public Boolean Framed { get; set; }
+		[Width(118), AlignCenter]
+		public Boolean OriginalAvailable { get; set; }
+		[DisplayFormat("$#,##0.00"), Width(98), AlignRight]
+		public Decimal OriginalPrice { get; set; }
+		[Width(64), AlignCenter]
+		public Boolean Framed { get; set; }
     }
 }

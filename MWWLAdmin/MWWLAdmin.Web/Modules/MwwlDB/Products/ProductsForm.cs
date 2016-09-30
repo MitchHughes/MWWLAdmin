@@ -14,7 +14,8 @@ namespace MWWLAdmin.MwwlDB.Forms
     public class ProductsForm
     {
         public String Title { get; set; }
-        public String Description { get; set; }
+		[TextAreaEditor(Rows = 3)]
+		public String Description { get; set; }
         public Boolean Available { get; set; }
         public Int16 Sequence { get; set; }
     }

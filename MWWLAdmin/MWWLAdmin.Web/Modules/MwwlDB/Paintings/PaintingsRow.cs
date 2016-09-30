@@ -80,7 +80,7 @@ namespace MWWLAdmin.MwwlDB.Entities
             set { Fields.OriginalAvailable[this] = value; }
         }
 
-        [DisplayName("Original Price"), Size(19), Scale(4)]
+        [DisplayName("Original Price"), Size(19), Scale(2)]
         public Decimal? OriginalPrice
         {
             get { return Fields.OriginalPrice[this]; }

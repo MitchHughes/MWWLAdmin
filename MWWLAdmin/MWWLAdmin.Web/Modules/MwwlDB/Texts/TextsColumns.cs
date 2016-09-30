@@ -13,7 +13,7 @@ namespace MWWLAdmin.MwwlDB.Columns
     [BasedOnRow(typeof(Entities.TextsRow))]
     public class TextsColumns
     {
-        [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
+        [EditLink, DisplayName("Db.Shared.RecordId")]
         public String Id { get; set; }
         public String Text { get; set; }
         public String Note { get; set; }

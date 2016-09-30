@@ -14,7 +14,8 @@ namespace MWWLAdmin.MwwlDB.Forms
     public class PricesForm
     {
         public String Item { get; set; }
-        public String Description { get; set; }
+		[TextAreaEditor(Rows = 3)]
+		public String Description { get; set; }
         public Decimal Price { get; set; }
         public Boolean Active { get; set; }
         public Int32 ProductId { get; set; }

@@ -13,12 +13,14 @@ namespace MWWLAdmin.MwwlDB.Columns
     [BasedOnRow(typeof(Entities.PricesRow))]
     public class PricesColumns
     {
-        [EditLink, DisplayName("Db.Shared.RecordId"), AlignRight]
+        [EditLink, DisplayName("Db.Shared.RecordId")]
         public Int32 Id { get; set; }
         [EditLink]
         public String Item { get; set; }
         public String Description { get; set; }
+		[DisplayFormat("$#,##0.00"), Width(55), AlignRight]
         public Decimal Price { get; set; }
+		[Width(50), AlignCenter]
         public Boolean Active { get; set; }
 		public String ProductTitle { get; set; }
 

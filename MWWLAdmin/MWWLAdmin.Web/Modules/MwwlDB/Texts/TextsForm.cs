@@ -13,7 +13,9 @@ namespace MWWLAdmin.MwwlDB.Forms
     [BasedOnRow(typeof(Entities.TextsRow))]
     public class TextsForm
     {
-        public String Text { get; set; }
-        public String Note { get; set; }
+		[TextAreaEditor(Rows = 4)]
+		public String Text { get; set; }
+		[TextAreaEditor(Rows = 4)]
+		public String Note { get; set; }
     }
 }
