@@ -7,8 +7,9 @@ namespace MWWLAdmin.MwwlDB {
 
     export interface CategoriesForm {
         Name: Serenity.StringEditor;
-        FolderName: Serenity.StringEditor;
+        Description: Serenity.StringEditor;
+        Active: Serenity.BooleanEditor;
     }
 
-    [['Id', () => Serenity.IntegerEditor], ['Name', () => Serenity.StringEditor], ['FolderName', () => Serenity.StringEditor]].forEach(x => Object.defineProperty(CategoriesForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
+    [['Id', () => Serenity.IntegerEditor], ['Name', () => Serenity.StringEditor], ['Description', () => Serenity.StringEditor], ['Active', () => Serenity.BooleanEditor]].forEach(x => Object.defineProperty(CategoriesForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
 }

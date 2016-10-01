@@ -5,10 +5,10 @@
     }
 
     export interface TextsForm {
-        Text: Serenity.StringEditor;
-        Note: Serenity.StringEditor;
+        Text: Serenity.TextAreaEditor;
+        Note: Serenity.TextAreaEditor;
     }
 
-    [['Text', () => Serenity.StringEditor], ['Note', () => Serenity.StringEditor]].forEach(x => Object.defineProperty(TextsForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
+    [['Text', () => Serenity.TextAreaEditor], ['Note', () => Serenity.TextAreaEditor]].forEach(x => Object.defineProperty(TextsForm.prototype, <string>x[0], { get: function () { return this.w(x[0], (x[1] as any)()); }, enumerable: true, configurable: true }));
 }
 

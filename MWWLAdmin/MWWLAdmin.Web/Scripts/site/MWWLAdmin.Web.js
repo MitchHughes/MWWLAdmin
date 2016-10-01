@@ -535,6 +535,184 @@ var MWWLAdmin;
 (function (MWWLAdmin) {
     var MwwlDB;
     (function (MwwlDB) {
+        var PaintingCategoriesDialog = (function (_super) {
+            __extends(PaintingCategoriesDialog, _super);
+            function PaintingCategoriesDialog() {
+                _super.apply(this, arguments);
+                this.form = new MwwlDB.PaintingCategoriesForm(this.idPrefix);
+            }
+            PaintingCategoriesDialog.prototype.getFormKey = function () { return MwwlDB.PaintingCategoriesForm.formKey; };
+            PaintingCategoriesDialog.prototype.getIdProperty = function () { return MwwlDB.PaintingCategoriesRow.idProperty; };
+            PaintingCategoriesDialog.prototype.getLocalTextPrefix = function () { return MwwlDB.PaintingCategoriesRow.localTextPrefix; };
+            PaintingCategoriesDialog.prototype.getService = function () { return MwwlDB.PaintingCategoriesService.baseUrl; };
+            PaintingCategoriesDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], PaintingCategoriesDialog);
+            return PaintingCategoriesDialog;
+        }(Serenity.EntityDialog));
+        MwwlDB.PaintingCategoriesDialog = PaintingCategoriesDialog;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PaintingCategoriesEditor = (function (_super) {
+            __extends(PaintingCategoriesEditor, _super);
+            function PaintingCategoriesEditor(container) {
+                _super.call(this, container);
+            }
+            PaintingCategoriesEditor.prototype.getColumnsKey = function () { return 'MwwlDB.PaintingCategories'; };
+            PaintingCategoriesEditor.prototype.getDialogType = function () { return MwwlDB.PaintingCategoriesEditorDialog; };
+            PaintingCategoriesEditor.prototype.getLocalTextPrefix = function () { return MwwlDB.PaintingCategoriesRow.localTextPrefix; };
+            PaintingCategoriesEditor = __decorate([
+                Serenity.Decorators.registerClass()
+            ], PaintingCategoriesEditor);
+            return PaintingCategoriesEditor;
+        }(MWWLAdmin.Common.GridEditorBase));
+        MwwlDB.PaintingCategoriesEditor = PaintingCategoriesEditor;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PaintingCategoriesEditorDialog = (function (_super) {
+            __extends(PaintingCategoriesEditorDialog, _super);
+            function PaintingCategoriesEditorDialog() {
+                _super.apply(this, arguments);
+                this.form = new MwwlDB.PaintingCategoriesForm(this.idPrefix);
+            }
+            PaintingCategoriesEditorDialog.prototype.getFormKey = function () { return MwwlDB.PaintingCategoriesForm.formKey; };
+            PaintingCategoriesEditorDialog.prototype.getLocalTextPrefix = function () { return MwwlDB.PaintingCategoriesRow.localTextPrefix; };
+            PaintingCategoriesEditorDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], PaintingCategoriesEditorDialog);
+            return PaintingCategoriesEditorDialog;
+        }(MWWLAdmin.Common.GridEditorDialog));
+        MwwlDB.PaintingCategoriesEditorDialog = PaintingCategoriesEditorDialog;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PaintingCategoriesGrid = (function (_super) {
+            __extends(PaintingCategoriesGrid, _super);
+            function PaintingCategoriesGrid(container) {
+                _super.call(this, container);
+            }
+            PaintingCategoriesGrid.prototype.getColumnsKey = function () { return 'MwwlDB.PaintingCategories'; };
+            PaintingCategoriesGrid.prototype.getDialogType = function () { return MwwlDB.PaintingCategoriesDialog; };
+            PaintingCategoriesGrid.prototype.getIdProperty = function () { return MwwlDB.PaintingCategoriesRow.idProperty; };
+            PaintingCategoriesGrid.prototype.getLocalTextPrefix = function () { return MwwlDB.PaintingCategoriesRow.localTextPrefix; };
+            PaintingCategoriesGrid.prototype.getService = function () { return MwwlDB.PaintingCategoriesService.baseUrl; };
+            PaintingCategoriesGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], PaintingCategoriesGrid);
+            return PaintingCategoriesGrid;
+        }(Serenity.EntityGrid));
+        MwwlDB.PaintingCategoriesGrid = PaintingCategoriesGrid;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var EventsDialog = (function (_super) {
+            __extends(EventsDialog, _super);
+            function EventsDialog() {
+                _super.apply(this, arguments);
+                this.form = new MwwlDB.EventsForm(this.idPrefix);
+            }
+            EventsDialog.prototype.getFormKey = function () { return MwwlDB.EventsForm.formKey; };
+            EventsDialog.prototype.getIdProperty = function () { return MwwlDB.EventsRow.idProperty; };
+            EventsDialog.prototype.getLocalTextPrefix = function () { return MwwlDB.EventsRow.localTextPrefix; };
+            EventsDialog.prototype.getNameProperty = function () { return MwwlDB.EventsRow.nameProperty; };
+            EventsDialog.prototype.getService = function () { return MwwlDB.EventsService.baseUrl; };
+            EventsDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], EventsDialog);
+            return EventsDialog;
+        }(Serenity.EntityDialog));
+        MwwlDB.EventsDialog = EventsDialog;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var EventsEditor = (function (_super) {
+            __extends(EventsEditor, _super);
+            function EventsEditor(container) {
+                _super.call(this, container);
+            }
+            EventsEditor.prototype.getColumnsKey = function () { return 'MwwlDB.Events'; };
+            EventsEditor.prototype.getDialogType = function () { return MwwlDB.EventsEditorDialog; };
+            EventsEditor.prototype.getLocalTextPrefix = function () { return MwwlDB.EventsRow.localTextPrefix; };
+            EventsEditor = __decorate([
+                Serenity.Decorators.registerClass()
+            ], EventsEditor);
+            return EventsEditor;
+        }(MWWLAdmin.Common.GridEditorBase));
+        MwwlDB.EventsEditor = EventsEditor;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var EventsEditorDialog = (function (_super) {
+            __extends(EventsEditorDialog, _super);
+            function EventsEditorDialog() {
+                _super.apply(this, arguments);
+                this.form = new MwwlDB.EventsForm(this.idPrefix);
+            }
+            EventsEditorDialog.prototype.getFormKey = function () { return MwwlDB.EventsForm.formKey; };
+            EventsEditorDialog.prototype.getLocalTextPrefix = function () { return MwwlDB.EventsRow.localTextPrefix; };
+            EventsEditorDialog.prototype.getNameProperty = function () { return MwwlDB.EventsRow.nameProperty; };
+            EventsEditorDialog = __decorate([
+                Serenity.Decorators.registerClass(),
+                Serenity.Decorators.responsive()
+            ], EventsEditorDialog);
+            return EventsEditorDialog;
+        }(MWWLAdmin.Common.GridEditorDialog));
+        MwwlDB.EventsEditorDialog = EventsEditorDialog;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var EventsGrid = (function (_super) {
+            __extends(EventsGrid, _super);
+            function EventsGrid(container) {
+                _super.call(this, container);
+            }
+            EventsGrid.prototype.getColumnsKey = function () { return 'MwwlDB.Events'; };
+            EventsGrid.prototype.getDialogType = function () { return MwwlDB.EventsDialog; };
+            EventsGrid.prototype.getIdProperty = function () { return MwwlDB.EventsRow.idProperty; };
+            EventsGrid.prototype.getLocalTextPrefix = function () { return MwwlDB.EventsRow.localTextPrefix; };
+            EventsGrid.prototype.getService = function () { return MwwlDB.EventsService.baseUrl; };
+            EventsGrid = __decorate([
+                Serenity.Decorators.registerClass()
+            ], EventsGrid);
+            return EventsGrid;
+        }(Serenity.EntityGrid));
+        MwwlDB.EventsGrid = EventsGrid;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
         var CategoriesDialog = (function (_super) {
             __extends(CategoriesDialog, _super);
             function CategoriesDialog() {
@@ -1612,7 +1790,7 @@ var MWWLAdmin;
             return CategoriesForm;
         }(Serenity.PrefixedContext));
         MwwlDB.CategoriesForm = CategoriesForm;
-        [['Name', function () { return Serenity.StringEditor; }], ['FolderName', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(CategoriesForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Name', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['Active', function () { return Serenity.BooleanEditor; }]].forEach(function (x) { return Object.defineProperty(CategoriesForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
 })(MWWLAdmin || (MWWLAdmin = {}));
 var MWWLAdmin;
@@ -1624,15 +1802,10 @@ var MWWLAdmin;
             CategoriesRow.idProperty = 'Id';
             CategoriesRow.nameProperty = 'Name';
             CategoriesRow.localTextPrefix = 'MwwlDB.Categories';
-            CategoriesRow.lookupKey = 'MwwlDB.Categories';
-            function getLookup() {
-                return Q.getLookup('MwwlDB.Categories');
-            }
-            CategoriesRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = CategoriesRow.Fields || (CategoriesRow.Fields = {}));
-            ['Id', 'Name', 'FolderName'].forEach(function (x) { return Fields[x] = x; });
+            ['Id', 'Name', 'Description', 'Active'].forEach(function (x) { return Fields[x] = x; });
         })(CategoriesRow = MwwlDB.CategoriesRow || (MwwlDB.CategoriesRow = {}));
     })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
 })(MWWLAdmin || (MWWLAdmin = {}));
@@ -1657,6 +1830,103 @@ var MWWLAdmin;
 (function (MWWLAdmin) {
     var MwwlDB;
     (function (MwwlDB) {
+        var EventsForm = (function (_super) {
+            __extends(EventsForm, _super);
+            function EventsForm() {
+                _super.apply(this, arguments);
+            }
+            EventsForm.formKey = 'MwwlDB.Events';
+            return EventsForm;
+        }(Serenity.PrefixedContext));
+        MwwlDB.EventsForm = EventsForm;
+        [['EventName', function () { return Serenity.StringEditor; }], ['EventLocation', function () { return Serenity.StringEditor; }], ['EventLink', function () { return Serenity.StringEditor; }], ['EventStartDate', function () { return Serenity.DateEditor; }], ['EventEndDate', function () { return Serenity.DateEditor; }], ['EventActive', function () { return Serenity.BooleanEditor; }]].forEach(function (x) { return Object.defineProperty(EventsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var EventsRow;
+        (function (EventsRow) {
+            EventsRow.idProperty = 'EventId';
+            EventsRow.nameProperty = 'EventName';
+            EventsRow.localTextPrefix = 'MwwlDB.Events';
+            var Fields;
+            (function (Fields) {
+            })(Fields = EventsRow.Fields || (EventsRow.Fields = {}));
+            ['EventId', 'EventName', 'EventLocation', 'EventLink', 'EventStartDate', 'EventEndDate', 'EventActive'].forEach(function (x) { return Fields[x] = x; });
+        })(EventsRow = MwwlDB.EventsRow || (MwwlDB.EventsRow = {}));
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var EventsService;
+        (function (EventsService) {
+            EventsService.baseUrl = 'MwwlDB/Events';
+            var Methods;
+            (function (Methods) {
+            })(Methods = EventsService.Methods || (EventsService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                EventsService[x] = function (r, s, o) { return Q.serviceRequest(EventsService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = EventsService.baseUrl + '/' + x;
+            });
+        })(EventsService = MwwlDB.EventsService || (MwwlDB.EventsService = {}));
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PaintingCategoriesForm = (function (_super) {
+            __extends(PaintingCategoriesForm, _super);
+            function PaintingCategoriesForm() {
+                _super.apply(this, arguments);
+            }
+            PaintingCategoriesForm.formKey = 'MwwlDB.PaintingCategories';
+            return PaintingCategoriesForm;
+        }(Serenity.PrefixedContext));
+        MwwlDB.PaintingCategoriesForm = PaintingCategoriesForm;
+        [['PaintingId', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(PaintingCategoriesForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PaintingCategoriesRow;
+        (function (PaintingCategoriesRow) {
+            PaintingCategoriesRow.idProperty = 'CategoryId';
+            PaintingCategoriesRow.localTextPrefix = 'MwwlDB.PaintingCategories';
+            var Fields;
+            (function (Fields) {
+            })(Fields = PaintingCategoriesRow.Fields || (PaintingCategoriesRow.Fields = {}));
+            ['CategoryId', 'PaintingId', 'CategoryName', 'CategoryDescription', 'CategoryActive', 'PaintingTitle', 'PaintingOriginalFileName', 'PaintingDimension', 'PaintingWorkshop', 'PaintingOriginalAvailable', 'PaintingOriginalPrice', 'PaintingFramed'].forEach(function (x) { return Fields[x] = x; });
+        })(PaintingCategoriesRow = MwwlDB.PaintingCategoriesRow || (MwwlDB.PaintingCategoriesRow = {}));
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
+        var PaintingCategoriesService;
+        (function (PaintingCategoriesService) {
+            PaintingCategoriesService.baseUrl = 'MwwlDB/PaintingCategories';
+            var Methods;
+            (function (Methods) {
+            })(Methods = PaintingCategoriesService.Methods || (PaintingCategoriesService.Methods = {}));
+            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
+                PaintingCategoriesService[x] = function (r, s, o) { return Q.serviceRequest(PaintingCategoriesService.baseUrl + '/' + x, r, s, o); };
+                Methods[x] = PaintingCategoriesService.baseUrl + '/' + x;
+            });
+        })(PaintingCategoriesService = MwwlDB.PaintingCategoriesService || (MwwlDB.PaintingCategoriesService = {}));
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
         var PaintingsForm = (function (_super) {
             __extends(PaintingsForm, _super);
             function PaintingsForm() {
@@ -1666,7 +1936,7 @@ var MWWLAdmin;
             return PaintingsForm;
         }(Serenity.PrefixedContext));
         MwwlDB.PaintingsForm = PaintingsForm;
-        [['Title', function () { return Serenity.StringEditor; }], ['CategoryId', function () { return Serenity.LookupEditor; }], ['OriginalFileName', function () { return Serenity.StringEditor; }], ['Dimension', function () { return Serenity.StringEditor; }], ['Workshop', function () { return Serenity.BooleanEditor; }], ['Large', function () { return Serenity.BooleanEditor; }], ['Small', function () { return Serenity.BooleanEditor; }], ['OriginalAvailable', function () { return Serenity.BooleanEditor; }], ['OriginalPrice', function () { return Serenity.DecimalEditor; }], ['Framed', function () { return Serenity.BooleanEditor; }]].forEach(function (x) { return Object.defineProperty(PaintingsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Title', function () { return Serenity.StringEditor; }], ['OriginalFileName', function () { return Serenity.StringEditor; }], ['Dimension', function () { return Serenity.StringEditor; }], ['Workshop', function () { return Serenity.BooleanEditor; }], ['OriginalAvailable', function () { return Serenity.BooleanEditor; }], ['OriginalPrice', function () { return Serenity.DecimalEditor; }], ['Framed', function () { return Serenity.BooleanEditor; }]].forEach(function (x) { return Object.defineProperty(PaintingsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
 })(MWWLAdmin || (MWWLAdmin = {}));
 var MWWLAdmin;
@@ -1681,7 +1951,7 @@ var MWWLAdmin;
             var Fields;
             (function (Fields) {
             })(Fields = PaintingsRow.Fields || (PaintingsRow.Fields = {}));
-            ['Id', 'Title', 'CategoryId', 'OriginalFileName', 'Dimension', 'Workshop', 'Large', 'Small', 'OriginalAvailable', 'OriginalPrice', 'Framed', 'CategoryName', 'CategoryFolderName'].forEach(function (x) { return Fields[x] = x; });
+            ['Id', 'Title', 'OriginalFileName', 'Dimension', 'Workshop', 'OriginalAvailable', 'OriginalPrice', 'Framed'].forEach(function (x) { return Fields[x] = x; });
         })(PaintingsRow = MwwlDB.PaintingsRow || (MwwlDB.PaintingsRow = {}));
     })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
 })(MWWLAdmin || (MWWLAdmin = {}));
@@ -1715,7 +1985,7 @@ var MWWLAdmin;
             return PricesForm;
         }(Serenity.PrefixedContext));
         MwwlDB.PricesForm = PricesForm;
-        [['Item', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['Price', function () { return Serenity.DecimalEditor; }], ['Active', function () { return Serenity.BooleanEditor; }], ['ProductId', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(PricesForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Item', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.TextAreaEditor; }], ['Price', function () { return Serenity.DecimalEditor; }], ['Active', function () { return Serenity.BooleanEditor; }], ['ProductId', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(PricesForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
 })(MWWLAdmin || (MWWLAdmin = {}));
 var MWWLAdmin;
@@ -1764,7 +2034,7 @@ var MWWLAdmin;
             return ProductsForm;
         }(Serenity.PrefixedContext));
         MwwlDB.ProductsForm = ProductsForm;
-        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.StringEditor; }], ['Available', function () { return Serenity.BooleanEditor; }], ['Sequence', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(ProductsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Title', function () { return Serenity.StringEditor; }], ['Description', function () { return Serenity.TextAreaEditor; }], ['Available', function () { return Serenity.BooleanEditor; }], ['Sequence', function () { return Serenity.IntegerEditor; }]].forEach(function (x) { return Object.defineProperty(ProductsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
 })(MWWLAdmin || (MWWLAdmin = {}));
 var MWWLAdmin;
@@ -1818,7 +2088,7 @@ var MWWLAdmin;
             return TextsForm;
         }(Serenity.PrefixedContext));
         MwwlDB.TextsForm = TextsForm;
-        [['Text', function () { return Serenity.StringEditor; }], ['Note', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(TextsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Text', function () { return Serenity.TextAreaEditor; }], ['Note', function () { return Serenity.TextAreaEditor; }]].forEach(function (x) { return Object.defineProperty(TextsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
 })(MWWLAdmin || (MWWLAdmin = {}));
 var MWWLAdmin;

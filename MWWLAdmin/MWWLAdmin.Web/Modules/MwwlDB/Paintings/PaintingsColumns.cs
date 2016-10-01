@@ -18,16 +18,11 @@ namespace MWWLAdmin.MwwlDB.Columns
         [EditLink]
 		[Width(165)]
 		public String Title { get; set; }
-		[Width(119)]
-		public String CategoryName { get; set; }
         public String OriginalFileName { get; set; }
 		[Width(84)]
 		public String Dimension { get; set; }
 		[Width(75), AlignCenter]
 		public Boolean Workshop { get; set; }
-        public Boolean Large { get; set; }
-        public Boolean Small { get; set; }
-		[Width(118), AlignCenter]
 		public Boolean OriginalAvailable { get; set; }
 		[DisplayFormat("$#,##0.00"), Width(98), AlignRight]
 		public Decimal OriginalPrice { get; set; }

@@ -3,7 +3,8 @@ namespace MWWLAdmin.MwwlDB {
     export interface CategoriesRow {
         Id?: number;
         Name?: string;
-        FolderName?: string;
+        Description?: string;
+        Active?: boolean;
     }
 
     export namespace CategoriesRow {
@@ -14,10 +15,11 @@ namespace MWWLAdmin.MwwlDB {
         export namespace Fields {
             export declare const Id;
             export declare const Name;
-            export declare const FolderName;
+            export declare const Description;
+            export declare const Active;
         }
 
-        ['Id', 'Name', 'FolderName'].forEach(x => (<any>Fields)[x] = x);
+        ['Id', 'Name', 'Description', 'Active'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

@@ -78,6 +78,16 @@ namespace MVC
                 public const string CategoriesIndex = "~/Modules/MwwlDB/Categories/CategoriesIndex.cshtml";
             }
 
+            public static class Events
+            {
+                public const string EventsIndex = "~/Modules/MwwlDB/Events/EventsIndex.cshtml";
+            }
+
+            public static class PaintingCategories
+            {
+                public const string PaintingCategoriesIndex = "~/Modules/MwwlDB/PaintingCategories/PaintingCategoriesIndex.cshtml";
+            }
+
             public static class Paintings
             {
                 public const string PaintingsIndex = "~/Modules/MwwlDB/Paintings/PaintingsIndex.cshtml";

@@ -17,6 +17,7 @@ namespace MWWLAdmin.MwwlDB.Columns
         public Int32 Id { get; set; }
         [EditLink]
         public String Name { get; set; }
-        public String FolderName { get; set; }
+        public String Description { get; set; }
+        public Boolean Active { get; set; }
     }
 }
