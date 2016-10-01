@@ -1652,6 +1652,7 @@
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20151111_133500_UserPermissionGrant.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\MwwlDB_20160919_112000_InitialCreation.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\MwwlDB_20160929_201000_Events.cs" />
+    <Compile Include="Modules\Common\Migrations\DefaultDB\MwwlDB_20160930_175800_Multicategory.cs" />
     <Compile Include="Modules\Common\Migrations\MigrationUtils.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141111_113000_Permissions.cs" />
     <Compile Include="Modules\Common\Migrations\DefaultDB\DefaultDB_20141103_140000_Initial.cs" />
