@@ -14,7 +14,7 @@ namespace MWWLAdmin.Membership.Forms
 	{
 		[Placeholder("default username is 'admin'")]
 		public String Username { get; set; }
-		[PasswordEditor, Placeholder("default password for admin user is 'serenity'"), Required(true)]
+		[PasswordEditor, Placeholder("default for admin is 'serenity'"), Required(true)]
 		public String Password { get; set; }
 	}
 }

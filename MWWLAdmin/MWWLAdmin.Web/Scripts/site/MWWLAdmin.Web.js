@@ -753,11 +753,11 @@ var MWWLAdmin;
                         cover: true,
                         overlay: Q.resolveUrl("~/scripts/vegas/overlays/01.png"),
                         slides: [
-                            { src: Q.resolveUrl('~/content/site/slides/slide1.jpg'), transition: 'fade' },
-                            { src: Q.resolveUrl('~/content/site/slides/slide2.jpg'), transition: 'fade' },
-                            { src: Q.resolveUrl('~/content/site/slides/slide3.jpg'), transition: 'zoomOut' },
-                            { src: Q.resolveUrl('~/content/site/slides/slide4.jpg'), transition: 'blur' },
-                            { src: Q.resolveUrl('~/content/site/slides/slide5.jpg'), transition: 'swirlLeft' }
+                            { src: Q.resolveUrl('~/content/site/slides/sslide1.jpg'), transition: 'fade' },
+                            { src: Q.resolveUrl('~/content/site/slides/sslide2.jpg'), transition: 'fade' },
+                            { src: Q.resolveUrl('~/content/site/slides/sslide3.jpg'), transition: 'zoomOut' },
+                            { src: Q.resolveUrl('~/content/site/slides/sslide4.jpg'), transition: 'blur' },
+                            { src: Q.resolveUrl('~/content/site/slides/sslide5.jpg'), transition: 'swirlLeft' }
                         ]
                     });
                 });

@@ -729,6 +729,7 @@
     <Content Include="Content\site\slides\slide3.jpg" />
     <Content Include="Content\site\slides\slide4.jpg" />
     <Content Include="Content\site\slides\slide5.jpg" />
+    <Content Include="Content\site\slides\ThirstyTrio.jpg" />
     <Content Include="Content\slick-default-theme.css" />
     <Content Include="Content\slick.columnpicker.css" />
     <Content Include="Content\slick.grid.css" />
