@@ -626,6 +626,9 @@
     <Content Include="Content\serenity\images\zoom.png" />
     <Content Include="Content\serenity\serenity.css" />
     <Content Include="Content\simple-line-icons.css" />
+    <Content Include="Content\site\images\FuchiaT.png" />
+    <Content Include="Content\site\images\MwwlLogoDark.png" />
+    <Content Include="Content\site\images\MwwlLogoLight.png" />
     <Content Include="Content\site\images\serenity-logo-40.png" />
     <Content Include="Content\site\images\serenity-logo-g-40.png" />
     <Content Include="Content\site\images\serenity-logo-w-128.png" />

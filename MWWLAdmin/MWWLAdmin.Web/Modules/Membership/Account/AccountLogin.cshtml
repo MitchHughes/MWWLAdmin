@@ -39,7 +39,7 @@
 <div class="alert alert-error alert-dismissible">
     <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
     <h4><i class="icon fa fa-warning"></i> Warning!</h4>
-    MWWLAdmin skipped running migrations to avoid modifying an arbitrary database.
+    MWWL Admin skipped running migrations to avoid modifying an arbitrary database.
     If you'd like to run migrations on this database, remove the safety check 
     in SiteInitialization.RunMigrations method.
 </div>
@@ -62,7 +62,8 @@
 
 <script type="text/javascript">
 jQuery(function() {
-    new MWWLAdmin.Membership.LoginPanel($('#LoginPanel')).init();
+	new MWWLAdmin.Membership.LoginPanel($('#LoginPanel')).init();
+
 @if (ViewData["Activated"] != null)
 {
     <text>
