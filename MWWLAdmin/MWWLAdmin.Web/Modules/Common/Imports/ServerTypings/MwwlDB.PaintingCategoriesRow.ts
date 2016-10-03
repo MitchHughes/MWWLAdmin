@@ -1,5 +1,6 @@
 ﻿namespace MWWLAdmin.MwwlDB {
     export interface PaintingCategoriesRow {
+        PaintingCategoriesId?: number;
         CategoryId?: number;
         PaintingId?: string;
         CategoryName?: string;
@@ -15,10 +16,11 @@
     }
 
     export namespace PaintingCategoriesRow {
-        export const idProperty = 'CategoryId';
+        export const idProperty = 'PaintingCategoriesId';
         export const localTextPrefix = 'MwwlDB.PaintingCategories';
 
         export namespace Fields {
+            export declare const PaintingCategoriesId: string;
             export declare const CategoryId: string;
             export declare const PaintingId: string;
             export declare const CategoryName: string;
@@ -33,7 +35,7 @@
             export declare const PaintingFramed: string;
         }
 
-        ['CategoryId', 'PaintingId', 'CategoryName', 'CategoryDescription', 'CategoryActive', 'PaintingTitle', 'PaintingOriginalFileName', 'PaintingDimension', 'PaintingWorkshop', 'PaintingOriginalAvailable', 'PaintingOriginalPrice', 'PaintingFramed'].forEach(x => (<any>Fields)[x] = x);
+        ['PaintingCategoriesId', 'CategoryId', 'PaintingId', 'CategoryName', 'CategoryDescription', 'CategoryActive', 'PaintingTitle', 'PaintingOriginalFileName', 'PaintingDimension', 'PaintingWorkshop', 'PaintingOriginalAvailable', 'PaintingOriginalPrice', 'PaintingFramed'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

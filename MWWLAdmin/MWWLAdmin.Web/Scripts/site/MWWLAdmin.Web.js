@@ -445,6 +445,33 @@ var MWWLAdmin;
 (function (MWWLAdmin) {
     var MwwlDB;
     (function (MwwlDB) {
+        var CategoryListFormatter = (function () {
+            function CategoryListFormatter() {
+            }
+            CategoryListFormatter.prototype.format = function (ctx) {
+                var idList = ctx.value;
+                if (!idList || !idList.length)
+                    return "";
+                var byId = MwwlDB.CategoriesRow.getLookup().itemById;
+                return idList.map(function (x) {
+                    var g = byId[x];
+                    if (!g)
+                        return x.toString();
+                    return Q.htmlEncode(g.Name);
+                }).join(", ");
+            };
+            CategoryListFormatter = __decorate([
+                Serenity.Decorators.registerFormatter()
+            ], CategoryListFormatter);
+            return CategoryListFormatter;
+        }());
+        MwwlDB.CategoryListFormatter = CategoryListFormatter;
+    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
+})(MWWLAdmin || (MWWLAdmin = {}));
+var MWWLAdmin;
+(function (MWWLAdmin) {
+    var MwwlDB;
+    (function (MwwlDB) {
         var PaintingsDialog = (function (_super) {
             __extends(PaintingsDialog, _super);
             function PaintingsDialog() {
@@ -529,94 +556,6 @@ var MWWLAdmin;
             return PaintingsGrid;
         }(Serenity.EntityGrid));
         MwwlDB.PaintingsGrid = PaintingsGrid;
-    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
-})(MWWLAdmin || (MWWLAdmin = {}));
-var MWWLAdmin;
-(function (MWWLAdmin) {
-    var MwwlDB;
-    (function (MwwlDB) {
-        var PaintingCategoriesDialog = (function (_super) {
-            __extends(PaintingCategoriesDialog, _super);
-            function PaintingCategoriesDialog() {
-                _super.apply(this, arguments);
-                this.form = new MwwlDB.PaintingCategoriesForm(this.idPrefix);
-            }
-            PaintingCategoriesDialog.prototype.getFormKey = function () { return MwwlDB.PaintingCategoriesForm.formKey; };
-            PaintingCategoriesDialog.prototype.getIdProperty = function () { return MwwlDB.PaintingCategoriesRow.idProperty; };
-            PaintingCategoriesDialog.prototype.getLocalTextPrefix = function () { return MwwlDB.PaintingCategoriesRow.localTextPrefix; };
-            PaintingCategoriesDialog.prototype.getService = function () { return MwwlDB.PaintingCategoriesService.baseUrl; };
-            PaintingCategoriesDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
-            ], PaintingCategoriesDialog);
-            return PaintingCategoriesDialog;
-        }(Serenity.EntityDialog));
-        MwwlDB.PaintingCategoriesDialog = PaintingCategoriesDialog;
-    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
-})(MWWLAdmin || (MWWLAdmin = {}));
-/// <reference path="../../Common/Helpers/GridEditorBase.ts" />
-var MWWLAdmin;
-(function (MWWLAdmin) {
-    var MwwlDB;
-    (function (MwwlDB) {
-        var PaintingCategoriesEditor = (function (_super) {
-            __extends(PaintingCategoriesEditor, _super);
-            function PaintingCategoriesEditor(container) {
-                _super.call(this, container);
-            }
-            PaintingCategoriesEditor.prototype.getColumnsKey = function () { return 'MwwlDB.PaintingCategories'; };
-            PaintingCategoriesEditor.prototype.getDialogType = function () { return MwwlDB.PaintingCategoriesEditorDialog; };
-            PaintingCategoriesEditor.prototype.getLocalTextPrefix = function () { return MwwlDB.PaintingCategoriesRow.localTextPrefix; };
-            PaintingCategoriesEditor = __decorate([
-                Serenity.Decorators.registerClass()
-            ], PaintingCategoriesEditor);
-            return PaintingCategoriesEditor;
-        }(MWWLAdmin.Common.GridEditorBase));
-        MwwlDB.PaintingCategoriesEditor = PaintingCategoriesEditor;
-    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
-})(MWWLAdmin || (MWWLAdmin = {}));
-/// <reference path="../../Common/Helpers/GridEditorDialog.ts" />
-var MWWLAdmin;
-(function (MWWLAdmin) {
-    var MwwlDB;
-    (function (MwwlDB) {
-        var PaintingCategoriesEditorDialog = (function (_super) {
-            __extends(PaintingCategoriesEditorDialog, _super);
-            function PaintingCategoriesEditorDialog() {
-                _super.apply(this, arguments);
-                this.form = new MwwlDB.PaintingCategoriesForm(this.idPrefix);
-            }
-            PaintingCategoriesEditorDialog.prototype.getFormKey = function () { return MwwlDB.PaintingCategoriesForm.formKey; };
-            PaintingCategoriesEditorDialog.prototype.getLocalTextPrefix = function () { return MwwlDB.PaintingCategoriesRow.localTextPrefix; };
-            PaintingCategoriesEditorDialog = __decorate([
-                Serenity.Decorators.registerClass(),
-                Serenity.Decorators.responsive()
-            ], PaintingCategoriesEditorDialog);
-            return PaintingCategoriesEditorDialog;
-        }(MWWLAdmin.Common.GridEditorDialog));
-        MwwlDB.PaintingCategoriesEditorDialog = PaintingCategoriesEditorDialog;
-    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
-})(MWWLAdmin || (MWWLAdmin = {}));
-var MWWLAdmin;
-(function (MWWLAdmin) {
-    var MwwlDB;
-    (function (MwwlDB) {
-        var PaintingCategoriesGrid = (function (_super) {
-            __extends(PaintingCategoriesGrid, _super);
-            function PaintingCategoriesGrid(container) {
-                _super.call(this, container);
-            }
-            PaintingCategoriesGrid.prototype.getColumnsKey = function () { return 'MwwlDB.PaintingCategories'; };
-            PaintingCategoriesGrid.prototype.getDialogType = function () { return MwwlDB.PaintingCategoriesDialog; };
-            PaintingCategoriesGrid.prototype.getIdProperty = function () { return MwwlDB.PaintingCategoriesRow.idProperty; };
-            PaintingCategoriesGrid.prototype.getLocalTextPrefix = function () { return MwwlDB.PaintingCategoriesRow.localTextPrefix; };
-            PaintingCategoriesGrid.prototype.getService = function () { return MwwlDB.PaintingCategoriesService.baseUrl; };
-            PaintingCategoriesGrid = __decorate([
-                Serenity.Decorators.registerClass()
-            ], PaintingCategoriesGrid);
-            return PaintingCategoriesGrid;
-        }(Serenity.EntityGrid));
-        MwwlDB.PaintingCategoriesGrid = PaintingCategoriesGrid;
     })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
 })(MWWLAdmin || (MWWLAdmin = {}));
 var MWWLAdmin;
@@ -1802,6 +1741,11 @@ var MWWLAdmin;
             CategoriesRow.idProperty = 'Id';
             CategoriesRow.nameProperty = 'Name';
             CategoriesRow.localTextPrefix = 'MwwlDB.Categories';
+            CategoriesRow.lookupKey = 'MwwlDB.Categories';
+            function getLookup() {
+                return Q.getLookup('MwwlDB.Categories');
+            }
+            CategoriesRow.getLookup = getLookup;
             var Fields;
             (function (Fields) {
             })(Fields = CategoriesRow.Fields || (CategoriesRow.Fields = {}));
@@ -1879,48 +1823,15 @@ var MWWLAdmin;
 (function (MWWLAdmin) {
     var MwwlDB;
     (function (MwwlDB) {
-        var PaintingCategoriesForm = (function (_super) {
-            __extends(PaintingCategoriesForm, _super);
-            function PaintingCategoriesForm() {
-                _super.apply(this, arguments);
-            }
-            PaintingCategoriesForm.formKey = 'MwwlDB.PaintingCategories';
-            return PaintingCategoriesForm;
-        }(Serenity.PrefixedContext));
-        MwwlDB.PaintingCategoriesForm = PaintingCategoriesForm;
-        [['PaintingId', function () { return Serenity.StringEditor; }]].forEach(function (x) { return Object.defineProperty(PaintingCategoriesForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
-    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
-})(MWWLAdmin || (MWWLAdmin = {}));
-var MWWLAdmin;
-(function (MWWLAdmin) {
-    var MwwlDB;
-    (function (MwwlDB) {
         var PaintingCategoriesRow;
         (function (PaintingCategoriesRow) {
-            PaintingCategoriesRow.idProperty = 'CategoryId';
+            PaintingCategoriesRow.idProperty = 'PaintingCategoriesId';
             PaintingCategoriesRow.localTextPrefix = 'MwwlDB.PaintingCategories';
             var Fields;
             (function (Fields) {
             })(Fields = PaintingCategoriesRow.Fields || (PaintingCategoriesRow.Fields = {}));
-            ['CategoryId', 'PaintingId', 'CategoryName', 'CategoryDescription', 'CategoryActive', 'PaintingTitle', 'PaintingOriginalFileName', 'PaintingDimension', 'PaintingWorkshop', 'PaintingOriginalAvailable', 'PaintingOriginalPrice', 'PaintingFramed'].forEach(function (x) { return Fields[x] = x; });
+            ['PaintingCategoriesId', 'CategoryId', 'PaintingId', 'CategoryName', 'CategoryDescription', 'CategoryActive', 'PaintingTitle', 'PaintingOriginalFileName', 'PaintingDimension', 'PaintingWorkshop', 'PaintingOriginalAvailable', 'PaintingOriginalPrice', 'PaintingFramed'].forEach(function (x) { return Fields[x] = x; });
         })(PaintingCategoriesRow = MwwlDB.PaintingCategoriesRow || (MwwlDB.PaintingCategoriesRow = {}));
-    })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
-})(MWWLAdmin || (MWWLAdmin = {}));
-var MWWLAdmin;
-(function (MWWLAdmin) {
-    var MwwlDB;
-    (function (MwwlDB) {
-        var PaintingCategoriesService;
-        (function (PaintingCategoriesService) {
-            PaintingCategoriesService.baseUrl = 'MwwlDB/PaintingCategories';
-            var Methods;
-            (function (Methods) {
-            })(Methods = PaintingCategoriesService.Methods || (PaintingCategoriesService.Methods = {}));
-            ['Create', 'Update', 'Delete', 'Retrieve', 'List'].forEach(function (x) {
-                PaintingCategoriesService[x] = function (r, s, o) { return Q.serviceRequest(PaintingCategoriesService.baseUrl + '/' + x, r, s, o); };
-                Methods[x] = PaintingCategoriesService.baseUrl + '/' + x;
-            });
-        })(PaintingCategoriesService = MwwlDB.PaintingCategoriesService || (MwwlDB.PaintingCategoriesService = {}));
     })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
 })(MWWLAdmin || (MWWLAdmin = {}));
 var MWWLAdmin;
@@ -1936,7 +1847,7 @@ var MWWLAdmin;
             return PaintingsForm;
         }(Serenity.PrefixedContext));
         MwwlDB.PaintingsForm = PaintingsForm;
-        [['Title', function () { return Serenity.StringEditor; }], ['OriginalFileName', function () { return Serenity.StringEditor; }], ['Dimension', function () { return Serenity.StringEditor; }], ['Workshop', function () { return Serenity.BooleanEditor; }], ['OriginalAvailable', function () { return Serenity.BooleanEditor; }], ['OriginalPrice', function () { return Serenity.DecimalEditor; }], ['Framed', function () { return Serenity.BooleanEditor; }]].forEach(function (x) { return Object.defineProperty(PaintingsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
+        [['Title', function () { return Serenity.StringEditor; }], ['OriginalFileName', function () { return Serenity.StringEditor; }], ['Dimension', function () { return Serenity.StringEditor; }], ['Workshop', function () { return Serenity.BooleanEditor; }], ['OriginalAvailable', function () { return Serenity.BooleanEditor; }], ['OriginalPrice', function () { return Serenity.DecimalEditor; }], ['Framed', function () { return Serenity.BooleanEditor; }], ['CategoryList', function () { return Serenity.LookupEditor; }]].forEach(function (x) { return Object.defineProperty(PaintingsForm.prototype, x[0], { get: function () { return this.w(x[0], x[1]()); }, enumerable: true, configurable: true }); });
     })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
 })(MWWLAdmin || (MWWLAdmin = {}));
 var MWWLAdmin;
@@ -1951,7 +1862,7 @@ var MWWLAdmin;
             var Fields;
             (function (Fields) {
             })(Fields = PaintingsRow.Fields || (PaintingsRow.Fields = {}));
-            ['Id', 'Title', 'OriginalFileName', 'Dimension', 'Workshop', 'OriginalAvailable', 'OriginalPrice', 'Framed'].forEach(function (x) { return Fields[x] = x; });
+            ['Id', 'Title', 'OriginalFileName', 'Dimension', 'Workshop', 'OriginalAvailable', 'OriginalPrice', 'Framed', 'CategoryList'].forEach(function (x) { return Fields[x] = x; });
         })(PaintingsRow = MwwlDB.PaintingsRow || (MwwlDB.PaintingsRow = {}));
     })(MwwlDB = MWWLAdmin.MwwlDB || (MWWLAdmin.MwwlDB = {}));
 })(MWWLAdmin || (MWWLAdmin = {}));

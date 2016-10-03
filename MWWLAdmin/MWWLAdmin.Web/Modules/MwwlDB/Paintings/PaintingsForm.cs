@@ -20,5 +20,7 @@ namespace MWWLAdmin.MwwlDB.Forms
         public Boolean OriginalAvailable { get; set; }
         public Decimal OriginalPrice { get; set; }
         public Boolean Framed { get; set; }
-    }
+		public List<Int32> CategoryList { get; set; }
+
+	}
 }

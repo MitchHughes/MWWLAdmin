@@ -13,7 +13,7 @@ namespace MWWLAdmin.MwwlDB.Columns
     [BasedOnRow(typeof(Entities.PricesRow))]
     public class PricesColumns
     {
-        [EditLink, DisplayName("Db.Shared.RecordId")]
+        [EditLink, DisplayName("Db.Shared.RecordId"), Width(40)]
         public Int32 Id { get; set; }
         [EditLink]
         public String Item { get; set; }
@@ -22,7 +22,6 @@ namespace MWWLAdmin.MwwlDB.Columns
         public Decimal Price { get; set; }
 		[Width(50), AlignCenter]
         public Boolean Active { get; set; }
-		public String ProductTitle { get; set; }
-
-	}
+        public Int32 ProductId { get; set; }
+    }
 }

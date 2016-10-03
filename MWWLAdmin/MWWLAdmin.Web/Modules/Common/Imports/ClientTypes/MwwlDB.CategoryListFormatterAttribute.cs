@@ -7,11 +7,11 @@ using System.ComponentModel;
 
 namespace MWWLAdmin.MwwlDB
 {
-    public partial class PaintingCategoriesEditorAttribute : CustomEditorAttribute
+    public partial class CategoryListFormatterAttribute : CustomFormatterAttribute
     {
-        public const string Key = "MWWLAdmin.MwwlDB.PaintingCategoriesEditor";
+        public const string Key = "MWWLAdmin.MwwlDB.CategoryListFormatter";
 
-        public PaintingCategoriesEditorAttribute()
+        public CategoryListFormatterAttribute()
             : base(Key)
         {
         }

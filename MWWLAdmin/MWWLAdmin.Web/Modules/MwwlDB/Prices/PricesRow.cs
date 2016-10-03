@@ -81,7 +81,7 @@ namespace MWWLAdmin.MwwlDB.Entities
         }
 
         [DisplayName("Product Sequence"), Expression("jProduct.[Sequence]")]
-        public Int16? ProductSequence
+        public Int32? ProductSequence
         {
             get { return Fields.ProductSequence[this]; }
             set { Fields.ProductSequence[this] = value; }
@@ -116,7 +116,7 @@ namespace MWWLAdmin.MwwlDB.Entities
             public StringField ProductTitle;
             public StringField ProductDescription;
             public BooleanField ProductAvailable;
-            public Int16Field ProductSequence;
+            public Int32Field ProductSequence;
 
             public RowFields()
                 : base("[dbo].[Prices]")

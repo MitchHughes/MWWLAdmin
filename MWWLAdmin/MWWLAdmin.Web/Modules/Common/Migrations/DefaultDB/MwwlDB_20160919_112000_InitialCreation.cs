@@ -9,8 +9,16 @@ namespace MWWLAdmin.Migrations.DefaultDB
 	{
 		public override void Up()
 		{
-			#region Create Schemas
-			#endregion
+			// Most of the time, the core database will already exist when adding in the 
+			// Serenity schema, so skip skip table creation and change from smallmoney to money instead.
+			if (Schema.Table("Paintings").Exists())
+			{
+				Alter.Column("OriginalPrice").OnTable("Paintings").AsCurrency();
+				Alter.Column("Price").OnTable("Prices").AsCurrency();
+				Delete.Column("Sequence").FromTable("Products");
+				Create.Column("Sequence").OnTable("Products").AsInt32().Nullable();
+				return;
+			}
 
 			#region Create Tables
 			Create.Table("Categories").InSchema("dbo")
@@ -44,7 +52,7 @@ namespace MWWLAdmin.Migrations.DefaultDB
 				.WithColumn("Title").AsString(50).NotNullable()
 				.WithColumn("Description").AsString(200).Nullable()
 				.WithColumn("Available").AsBoolean().NotNullable()
-				.WithColumn("Sequence").AsByte().Nullable();
+				.WithColumn("Sequence").AsInt32().Nullable();
 
 			Create.Table("Texts").InSchema("dbo")
 				.WithColumn("ID").AsFixedLengthString(20).NotNullable().PrimaryKey()
@@ -66,9 +74,6 @@ namespace MWWLAdmin.Migrations.DefaultDB
 			Create.UniqueConstraint("IX_Products_Title")
 				.OnTable("Products").WithSchema("dbo")
 				.Column("Title");
-			#endregion
-
-			#region Create Indexes
 			#endregion
 
 		}

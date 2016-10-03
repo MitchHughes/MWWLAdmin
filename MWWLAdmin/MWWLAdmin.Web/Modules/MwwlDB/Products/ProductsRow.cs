@@ -46,7 +46,7 @@ namespace MWWLAdmin.MwwlDB.Entities
         }
 
         [DisplayName("Sequence")]
-        public Int16? Sequence
+        public Int32? Sequence
         {
             get { return Fields.Sequence[this]; }
             set { Fields.Sequence[this] = value; }
@@ -75,7 +75,7 @@ namespace MWWLAdmin.MwwlDB.Entities
             public StringField Title;
             public StringField Description;
             public BooleanField Available;
-            public Int16Field Sequence;
+            public Int32Field Sequence;
 
             public RowFields()
                 : base("[dbo].[Products]")

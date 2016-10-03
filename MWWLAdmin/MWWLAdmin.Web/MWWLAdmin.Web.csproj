@@ -1173,9 +1173,6 @@
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.EventsColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.PaintingCategoriesColumns.ts">
-      <DependentUpon>ServerTypings.tt</DependentUpon>
-    </TypeScriptCompile>
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.PaintingsColumns.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
@@ -1518,6 +1515,7 @@
     <TypeScriptCompile Include="Modules\Common\Helpers\ExcelExportHelper.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\BasicProgressDialog.ts" />
     <TypeScriptCompile Include="Modules\Common\Helpers\BulkServiceAction.ts" />
+    <TypeScriptCompile Include="Modules\MwwlDB\Paintings\CategoryListFormatter.ts" />
     <TypeScriptCompile Include="Scripts\serenity\Serenity.CoreLib.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jquery\jquery.d.ts" />
     <TypeScriptCompile Include="Scripts\typings\jspdf\jspdf.d.ts" />
@@ -1609,20 +1607,9 @@
     <TypeScriptCompile Include="Modules\MwwlDB\Events\EventsDialog.ts" />
     <TypeScriptCompile Include="Modules\MwwlDB\Events\EventsEditor.ts" />
     <TypeScriptCompile Include="Modules\MwwlDB\Events\EventsEditorDialog.ts" />
-    <Content Include="Modules\MwwlDB\PaintingCategories\PaintingCategoriesIndex.cshtml" />
     <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.PaintingCategoriesRow.ts">
       <DependentUpon>ServerTypings.tt</DependentUpon>
     </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.PaintingCategoriesService.ts">
-      <DependentUpon>ServerTypings.tt</DependentUpon>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\Common\Imports\ServerTypings\MwwlDB.PaintingCategoriesForm.ts">
-      <DependentUpon>ServerTypings.tt</DependentUpon>
-    </TypeScriptCompile>
-    <TypeScriptCompile Include="Modules\MwwlDB\PaintingCategories\PaintingCategoriesGrid.ts" />
-    <TypeScriptCompile Include="Modules\MwwlDB\PaintingCategories\PaintingCategoriesDialog.ts" />
-    <TypeScriptCompile Include="Modules\MwwlDB\PaintingCategories\PaintingCategoriesEditor.ts" />
-    <TypeScriptCompile Include="Modules\MwwlDB\PaintingCategories\PaintingCategoriesEditorDialog.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
@@ -1668,10 +1655,10 @@
     <Compile Include="Modules\Common\Imports\ClientTypes\MwwlDB.CategoriesEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\MwwlDB.EventsEditorAttribute.cs">
+    <Compile Include="Modules\Common\Imports\ClientTypes\MwwlDB.CategoryListFormatterAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
-    <Compile Include="Modules\Common\Imports\ClientTypes\MwwlDB.PaintingCategoriesEditorAttribute.cs">
+    <Compile Include="Modules\Common\Imports\ClientTypes\MwwlDB.EventsEditorAttribute.cs">
       <DependentUpon>ClientTypes.tt</DependentUpon>
     </Compile>
     <Compile Include="Modules\Common\Imports\ClientTypes\MwwlDB.PaintingsEditorAttribute.cs">
@@ -1810,11 +1797,7 @@
     <Compile Include="Modules\MwwlDB\Events\EventsEndpoint.cs" />
     <Compile Include="Modules\MwwlDB\Events\EventsPage.cs" />
     <Compile Include="Modules\MwwlDB\PaintingCategories\PaintingCategoriesRow.cs" />
-    <Compile Include="Modules\MwwlDB\PaintingCategories\PaintingCategoriesColumns.cs" />
-    <Compile Include="Modules\MwwlDB\PaintingCategories\PaintingCategoriesForm.cs" />
     <Compile Include="Modules\MwwlDB\PaintingCategories\PaintingCategoriesRepository.cs" />
-    <Compile Include="Modules\MwwlDB\PaintingCategories\PaintingCategoriesEndpoint.cs" />
-    <Compile Include="Modules\MwwlDB\PaintingCategories\PaintingCategoriesPage.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

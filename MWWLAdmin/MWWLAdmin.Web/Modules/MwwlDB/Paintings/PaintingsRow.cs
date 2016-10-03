@@ -1,4 +1,4 @@
-﻿
+﻿using System.Collections.Generic;
 
 namespace MWWLAdmin.MwwlDB.Entities
 {
@@ -72,7 +72,16 @@ namespace MWWLAdmin.MwwlDB.Entities
             set { Fields.Framed[this] = value; }
         }
 
-        IIdField IIdRow.IdField
+		[DisplayName("Categories")]
+		[LookupEditor(typeof(CategoriesRow), Multiple = true), ClientSide]
+		[LinkingSetRelation(typeof(PaintingCategoriesRow), "PaintingID", "CategoryID")]
+		public List<Int32> CategoryList
+		{
+			get { return Fields.CategoryList[this]; }
+			set { Fields.CategoryList[this] = value; }
+		}
+
+		IIdField IIdRow.IdField
         {
             get { return Fields.Id; }
         }
@@ -84,7 +93,7 @@ namespace MWWLAdmin.MwwlDB.Entities
 
         public static readonly RowFields Fields = new RowFields().Init();
 
-        public PaintingsRow()
+		public PaintingsRow()
             : base(Fields)
         {
         }
@@ -99,8 +108,10 @@ namespace MWWLAdmin.MwwlDB.Entities
             public BooleanField OriginalAvailable;
             public DecimalField OriginalPrice;
             public BooleanField Framed;
+			public ListField<Int32> CategoryList;
 
-            public RowFields()
+
+			public RowFields()
                 : base("[dbo].[Paintings]")
             {
                 LocalTextPrefix = "MwwlDB.Paintings";

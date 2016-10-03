@@ -8,6 +8,7 @@
         OriginalAvailable?: boolean;
         OriginalPrice?: number;
         Framed?: boolean;
+        CategoryList?: number[];
     }
 
     export namespace PaintingsRow {
@@ -24,9 +25,10 @@
             export declare const OriginalAvailable: string;
             export declare const OriginalPrice: string;
             export declare const Framed: string;
+            export declare const CategoryList: string;
         }
 
-        ['Id', 'Title', 'OriginalFileName', 'Dimension', 'Workshop', 'OriginalAvailable', 'OriginalPrice', 'Framed'].forEach(x => (<any>Fields)[x] = x);
+        ['Id', 'Title', 'OriginalFileName', 'Dimension', 'Workshop', 'OriginalAvailable', 'OriginalPrice', 'Framed', 'CategoryList'].forEach(x => (<any>Fields)[x] = x);
     }
 }
 

@@ -140,6 +140,11 @@ declare namespace MWWLAdmin.MwwlDB {
     }
 }
 declare namespace MWWLAdmin.MwwlDB {
+    class CategoryListFormatter implements Slick.Formatter {
+        format(ctx: Slick.FormatterContext): string;
+    }
+}
+declare namespace MWWLAdmin.MwwlDB {
     class PaintingsDialog extends Serenity.EntityDialog<PaintingsRow, any> {
         protected getFormKey(): string;
         protected getIdProperty(): string;
@@ -169,40 +174,6 @@ declare namespace MWWLAdmin.MwwlDB {
     class PaintingsGrid extends Serenity.EntityGrid<PaintingsRow, any> {
         protected getColumnsKey(): string;
         protected getDialogType(): typeof PaintingsDialog;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace MWWLAdmin.MwwlDB {
-    class PaintingCategoriesDialog extends Serenity.EntityDialog<PaintingCategoriesRow, any> {
-        protected getFormKey(): string;
-        protected getIdProperty(): string;
-        protected getLocalTextPrefix(): string;
-        protected getService(): string;
-        protected form: PaintingCategoriesForm;
-    }
-}
-declare namespace MWWLAdmin.MwwlDB {
-    class PaintingCategoriesEditor extends Common.GridEditorBase<PaintingCategoriesRow> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof PaintingCategoriesEditorDialog;
-        protected getLocalTextPrefix(): string;
-        constructor(container: JQuery);
-    }
-}
-declare namespace MWWLAdmin.MwwlDB {
-    class PaintingCategoriesEditorDialog extends Common.GridEditorDialog<PaintingCategoriesRow> {
-        protected getFormKey(): string;
-        protected getLocalTextPrefix(): string;
-        protected form: PaintingCategoriesForm;
-    }
-}
-declare namespace MWWLAdmin.MwwlDB {
-    class PaintingCategoriesGrid extends Serenity.EntityGrid<PaintingCategoriesRow, any> {
-        protected getColumnsKey(): string;
-        protected getDialogType(): typeof PaintingCategoriesDialog;
         protected getIdProperty(): string;
         protected getLocalTextPrefix(): string;
         protected getService(): string;
@@ -900,6 +871,8 @@ declare namespace MWWLAdmin.MwwlDB {
         const idProperty: string;
         const nameProperty: string;
         const localTextPrefix: string;
+        const lookupKey: string;
+        function getLookup(): Q.Lookup<CategoriesRow>;
         namespace Fields {
             const Id: string;
             const Name: string;
@@ -983,17 +956,8 @@ declare namespace MWWLAdmin.MwwlDB {
     }
 }
 declare namespace MWWLAdmin.MwwlDB {
-}
-declare namespace MWWLAdmin.MwwlDB {
-    class PaintingCategoriesForm extends Serenity.PrefixedContext {
-        static formKey: string;
-    }
-    interface PaintingCategoriesForm {
-        PaintingId: Serenity.StringEditor;
-    }
-}
-declare namespace MWWLAdmin.MwwlDB {
     interface PaintingCategoriesRow {
+        PaintingCategoriesId?: number;
         CategoryId?: number;
         PaintingId?: string;
         CategoryName?: string;
@@ -1011,6 +975,7 @@ declare namespace MWWLAdmin.MwwlDB {
         const idProperty: string;
         const localTextPrefix: string;
         namespace Fields {
+            const PaintingCategoriesId: string;
             const CategoryId: string;
             const PaintingId: string;
             const CategoryName: string;
@@ -1023,23 +988,6 @@ declare namespace MWWLAdmin.MwwlDB {
             const PaintingOriginalAvailable: string;
             const PaintingOriginalPrice: string;
             const PaintingFramed: string;
-        }
-    }
-}
-declare namespace MWWLAdmin.MwwlDB {
-    namespace PaintingCategoriesService {
-        const baseUrl: string;
-        function Create(request: Serenity.SaveRequest<PaintingCategoriesRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Update(request: Serenity.SaveRequest<PaintingCategoriesRow>, onSuccess?: (response: Serenity.SaveResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Delete(request: Serenity.DeleteRequest, onSuccess?: (response: Serenity.DeleteResponse) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function Retrieve(request: Serenity.RetrieveRequest, onSuccess?: (response: Serenity.RetrieveResponse<PaintingCategoriesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        function List(request: Serenity.ListRequest, onSuccess?: (response: Serenity.ListResponse<PaintingCategoriesRow>) => void, opt?: Q.ServiceOptions<any>): JQueryXHR;
-        namespace Methods {
-            const Create: string;
-            const Update: string;
-            const Delete: string;
-            const Retrieve: string;
-            const List: string;
         }
     }
 }
@@ -1057,6 +1005,7 @@ declare namespace MWWLAdmin.MwwlDB {
         OriginalAvailable: Serenity.BooleanEditor;
         OriginalPrice: Serenity.DecimalEditor;
         Framed: Serenity.BooleanEditor;
+        CategoryList: Serenity.LookupEditor;
     }
 }
 declare namespace MWWLAdmin.MwwlDB {
@@ -1069,6 +1018,7 @@ declare namespace MWWLAdmin.MwwlDB {
         OriginalAvailable?: boolean;
         OriginalPrice?: number;
         Framed?: boolean;
+        CategoryList?: number[];
     }
     namespace PaintingsRow {
         const idProperty: string;
@@ -1083,6 +1033,7 @@ declare namespace MWWLAdmin.MwwlDB {
             const OriginalAvailable: string;
             const OriginalPrice: string;
             const Framed: string;
+            const CategoryList: string;
         }
     }
 }

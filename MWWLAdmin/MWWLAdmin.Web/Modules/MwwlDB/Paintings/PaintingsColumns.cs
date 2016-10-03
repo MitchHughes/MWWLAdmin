@@ -17,16 +17,19 @@ namespace MWWLAdmin.MwwlDB.Columns
         public Guid Id { get; set; }
         [EditLink]
 		[Width(165)]
-		public String Title { get; set; }
+        public String Title { get; set; }
         public String OriginalFileName { get; set; }
 		[Width(84)]
-		public String Dimension { get; set; }
+        public String Dimension { get; set; }
 		[Width(75), AlignCenter]
-		public Boolean Workshop { get; set; }
-		public Boolean OriginalAvailable { get; set; }
+        public Boolean Workshop { get; set; }
+        public Boolean OriginalAvailable { get; set; }
 		[DisplayFormat("$#,##0.00"), Width(98), AlignRight]
-		public Decimal OriginalPrice { get; set; }
+        public Decimal OriginalPrice { get; set; }
 		[Width(64), AlignCenter]
-		public Boolean Framed { get; set; }
-    }
+        public Boolean Framed { get; set; }
+		[Width(200), CategoryListFormatter]
+		public List<Int32> CategoryList { get; set; }
+
+	}
 }

@@ -1,7 +1,5 @@
 ﻿
 
-[assembly:Serenity.Navigation.NavigationLink(int.MaxValue, "MwwlDB/Events", typeof(MWWLAdmin.MwwlDB.Pages.EventsController))]
-
 namespace MWWLAdmin.MwwlDB.Pages
 {
     using Serenity;

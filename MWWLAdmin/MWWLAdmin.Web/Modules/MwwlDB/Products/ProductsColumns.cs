@@ -13,7 +13,7 @@ namespace MWWLAdmin.MwwlDB.Columns
     [BasedOnRow(typeof(Entities.ProductsRow))]
     public class ProductsColumns
     {
-        [EditLink, DisplayName("Db.Shared.RecordId")]
+        [EditLink, DisplayName("Db.Shared.RecordId"), Width(40)]
         public Int32 Id { get; set; }
         [EditLink]
         public String Title { get; set; }
@@ -21,6 +21,6 @@ namespace MWWLAdmin.MwwlDB.Columns
 		[Width(68), AlignCenter]
 		public Boolean Available { get; set; }
 		[Width(75)]
-		public Int16 Sequence { get; set; }
+		public Int32 Sequence { get; set; }
     }
 }

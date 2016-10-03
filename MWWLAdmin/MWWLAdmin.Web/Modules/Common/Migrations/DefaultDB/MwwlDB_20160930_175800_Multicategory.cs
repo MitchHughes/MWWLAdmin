@@ -10,10 +10,12 @@ namespace MWWLAdmin.Migrations.DefaultDB
 		public override void Up()
 		{
 			// Add new table for multiple categories
+			// Note: Add primary key seperately since we want a clustered index on the foreign keys
 			Create.Table("PaintingCategories").InSchema("dbo")
-				.WithColumn("CategoryID").AsInt32().NotNullable().PrimaryKey()
-				.WithColumn("PaintingID").AsGuid().NotNullable().PrimaryKey()
-				;
+				.WithColumn("PaintingCategoriesID").AsInt32().Identity(10000,1).NotNullable()
+				.WithColumn("CategoryID").AsInt32().NotNullable()
+				.WithColumn("PaintingID").AsGuid().NotNullable();
+
 			// Copy current categories to the new table
 			Execute.Sql(
 			  @"INSERT INTO [dbo].[PaintingCategories]
@@ -43,6 +45,20 @@ namespace MWWLAdmin.Migrations.DefaultDB
 			Create.ForeignKey("FK_PaintingCategories_Paintings")
 				.FromTable("PaintingCategories").InSchema("dbo").ForeignColumns("PaintingID")
 				.ToTable("Paintings").InSchema("dbo").PrimaryColumns("ID");
+			#endregion
+
+			#region Create Indexes
+			Create.Index("IX_PaintingCategoriesClustered")
+				.OnTable("PaintingCategories").InSchema("dbo")
+				.OnColumn("CategoryID").Ascending()
+				.OnColumn("PaintingID").Ascending()
+				.WithOptions()
+				.Clustered();
+
+			Create.PrimaryKey("PK_PaintingCategories")
+				.OnTable("PaintingCategories")
+				.Column("PaintingCategoriesID")
+				.NonClustered();
 			#endregion
 
 		}

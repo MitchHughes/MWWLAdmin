@@ -16,8 +16,11 @@ namespace MWWLAdmin.MwwlDB.Forms
         public String EventName { get; set; }
         public String EventLocation { get; set; }
         public String EventLink { get; set; }
-        public DateTime EventStartDate { get; set; }
-        public DateTime EventEndDate { get; set; }
-        public Boolean EventActive { get; set; }
+		[DefaultValue("today")]
+		public DateTime EventStartDate { get; set; }
+		[DefaultValue("today")]
+		public DateTime EventEndDate { get; set; }
+		[DefaultValue(1)]
+		public Boolean EventActive { get; set; }
     }
 }
